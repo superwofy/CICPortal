@@ -1,7 +1,7 @@
 # What is this?
 
 
-A home-brew implementation of BMW's Online portal for ID3 CIC infotainment units.
+A home-brew implementation of BMW's Online portal for ID2 CIC infotainment units.
 
 If your telematics subscription is still active you can still access the original BMW servers. The public proxy that was accessible through Bluetooth tethering was shut down around 2018.
 
@@ -14,22 +14,22 @@ Only the Online / Live section is implemented. Internet requires binauth (I have
 
 ## Portal features
 
-News - powered by 68knews
-Weather - parsed from weather.com
-Search - powered by frogfind
-A somewhat crude lap timer
-A world clock
+News - powered by 68knews  
+Weather - parsed from weather.com  
+Search - powered by frogfind  
+A somewhat crude lap timer  
+A world clock  
 Whatever else you wish to add :)
 
 
 # Server VM
 
-https://mega.nz/file/vWohwaYD#P4wy5eISmEGCdT10b6FT_22ruv8qL8WNToAgDkd2LWA
-Use this VM to skip configuring the webserver and proxy.
-This is not kept up-to-date. You may have to update the portal files manually.
-The static IP may need to be reconfigured depending on your network setup.
-`sudo vi /etc/systemd/network/25-wired.network`
-Port 8080 must be opened and forwarded on your router.
+https://mega.nz/file/vWohwaYD#P4wy5eISmEGCdT10b6FT_22ruv8qL8WNToAgDkd2LWA  
+Use this VM to skip configuring the webserver and proxy.  
+This is not kept up-to-date. You may have to update the portal files manually.  
+The static IP may need to be reconfigured depending on your network setup.  
+`sudo vi /etc/systemd/network/25-wired.network`  
+Port 8080 must be opened and forwarded on your router.  
 
 Edit /var/www/html/provision.xml and replace \*\*your IP\*\* with your static IP.
 
@@ -65,35 +65,31 @@ You will need an http web-server (Apache, Lighttpd, NGINX, etc.) and PHP.
 The instructions below apply for a Debian instance and PHP7.3.
 
 
-Install packages:
+Install packages:  
 `sudo su -c 'apt update && apt upgrade -y && apt install lighttpd php-fpm php-xml php-curl php-gd php-mbstring -y'`
 
 
-Configure server:
+Configure server:  
 `ln -s /var/www/html/ web-root && sudo su -c 'chown admin:admin /var/www/ -R && echo "cgi.fix_pathinfo=1" >> /etc/php/7.3/fpm/php.ini && ln -s /etc/lighttpd/conf-available/10-fastcgi.conf /etc/lighttpd/conf-enabled/ && ln -s /etc/lighttpd/conf-available/15-fastcgi-php.conf /etc/lighttpd/conf-enabled/' `
 
 
-Modify configuration:
+Modify configuration:  
 `sudo vi /etc/lighttpd/conf-available/15-fastcgi-php.conf`
 
-`# -*- depends: fastcgi -*-
-# /usr/share/doc/lighttpd/fastcgi.txt.gz
-# http://redmine.lighttpd.net/projects/lighttpd/wiki/Docs:ConfigurationOptions#mod_fastcgi-fastcgi
-\
-## Start an FastCGI server for php (needs the php5-cgi package)
+```
 fastcgi.server += ( ".php" => 
 	((
 		"socket" => "/run/php/php7.3-fpm.sock",
 		"broken-scriptfilename" => "enable"
 	))
-)`
+)
+```
 
-
-Re-start the server:
+Re-start the server:  
 `sudo service lighttpd force-reload`
 
 
-Copy the portal files to the web root (/var/www/html/) and change permissions for settings files, cache folder for frogfind,news:
+Copy the portal files to the web root (/var/www/html/) and change permissions for settings files, cache folder for frogfind,news:  
 
 `sudo su -c 'sudo chown www-data:www-data /var/www/html/settings/vehicle -R; sudo chown www-data:www-data /var/www/html/search/php/library/cache -R; sudo chown www-data:www-data /var/www/html/news/php/library/cache -R; sudo chown www-data:www-data /var/www/html/weather/cache'`
 
@@ -105,10 +101,12 @@ Copy the portal files to the web root (/var/www/html/) and change permissions fo
 All requests from the CIC are proxied before they reach a server. We will set up a http proxy with basic auth. An added benefit of the proxy is that you don't need to keep port 80 open to the world.
 
 
-`sudo apt install squid apache2-utils -y`
-`sudo su -c 'touch /etc/squid/passwords && chmod 777 /etc/squid/passwords && htpasswd -c /etc/squid/passwords b2v_standard'`
-`sudo mv /etc/squid/squid.conf /etc/squid/squid.conf.original && sudo vi /etc/squid/squid.conf`
+`sudo apt install squid apache2-utils -y`  
+`sudo su -c 'touch /etc/squid/passwords && chmod 777 /etc/squid/passwords && htpasswd -c /etc/squid/passwords b2v_standard'`  
+`sudo mv /etc/squid/squid.conf /etc/squid/squid.conf.original && sudo vi /etc/squid/squid.conf`  
 
+
+```
 auth_param basic program /usr/lib/squid/basic_ncsa_auth /etc/squid/passwords
 auth_param basic realm Squid proxy-caching web server
 auth_param basic credentialsttl 24 hours
@@ -120,9 +118,10 @@ forwarded_for delete
 via off
 http_port 8080
 cache deny all
+```
 
-If ufw is installed:
 
+If ufw is installed:  
 `sudo ufw allow 8080/tcp && sudo service squid restart`
 
 
@@ -152,8 +151,7 @@ Hook up a simple UART (57600) adapter to those pins and you will see debug outpu
 5. l - login, 6 - Show Passwords
 
 
-Modify the XML provided to include your proxy IP. Place your modified XMLs to the root of a usb drive in a folder named "xml", log in as root on the Combox and exit to shell (0). Run:
-
+Modify the XML provided to include your proxy IP. Place your modified XMLs to the root of a usb drive in a folder named "xml", log in as root on the Combox and exit to shell (0). Run:  
 
 `mount -o remount rw /HBProvisioning && cp /mnt/umass00100t12/xml/* /HBProvisioning/xml/ && mount -o remount ro /HBProvisioning && rm -r /HBProvisioningDyn/* && slay BMW_MAIN`
 
@@ -164,12 +162,14 @@ Modify the XML provided to include your proxy IP. Place your modified XMLs to th
 
 ### Combox
 
+```
 DPAS_INDEX
 	dpas_3
 CONFIG_INDEX
 	config_index_3
 SIM_ENABLED_MB
 	csim
+```
 
 
 ### CIC
@@ -184,7 +184,7 @@ Replace \*your IP\* with the IP address of the proxy.
 
 To load manually with Tool32:
 
-1. Copy provisioning.xml to root of C: drive.
+1. Copy provisioning.xml to root of the C: drive.
 
 2. Start Tool32 and load CMEDIAR.PRG.
 
