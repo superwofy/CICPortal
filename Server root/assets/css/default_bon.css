@@ -1,0 +1,49 @@
+
+/* CSS Release 15 (17.09.2008) */
+
+
+@font-face {
+    font-family: "BMWTypeRegular";
+    src: url(/assets/font/Frutiger.ttf) format("truetype");
+}
+
+body { margin-top: 0px; margin-bottom: 0px; background-color: #202020; font-family: BMWTypeRegular; font-size: 36px; line-height: 60px; color: #80B0DC; }
+h1,h2,h3,h4,h5,h6,p,ul,ol,li,dl,dt,dd,menu,dir { margin-top: 0px; margin-bottom: 0px; font-size: 36px; line-height: 60px; }
+table,tr,td { border: 0px solid #202020; padding: 0px; font-size: 36px; line-height: 60px; }
+
+a:visited { border: 0px solid #202020; color: #FFFFFF; background-color: #202020; text-decoration: none; display: inline; }
+a:link { border: 0px solid #202020; color: #FFFFFF; background-color: #202020; text-decoration: none; display: inline; }
+a:hover {  }
+a:focus { border: 0px solid #202020; color: #FC3C00; background-color: #202020; display: inline; }
+a:active {  }
+a { border: 0px solid #202020; color: #FFFFFF; background-color: #202020; text-decoration: none; display: inline; }
+
+img { border: medium solid #202020; }
+img:focus { border: medium solid #FC3C00; }
+img.noborder { border: 0px none #202020; }
+a:visited img { border: medium solid #202020; background-color: #202020; display: inline; }
+a:link img { border: medium solid #202020; background-color: #202020; display: inline; }
+a:hover img {  }
+a:focus img { border: medium solid #FC3C00; background-color: #202020; display: inline; }
+a:active img {  }
+a img { border: medium solid #202020; background-color: #202020; display: inline; }
+
+a.img:visited { border: medium solid #202020; background-color: #202020; display: inline-block; }
+a.img:link { border: medium solid #202020; background-color: #202020; display: inline-block; }
+a.img:hover {  }
+a.img:focus { color: #FC3C00; background-color: #202020; border: medium solid #FC3C00; display: inline-block; }
+a.img:active {  }
+a.img { border: medium solid #202020; background-color: #202020; display: inline-block; }
+
+textarea,select,option,input[type=text],input[type=password],input[type=submit] { vertical-align: middle; }
+textarea,input,select,option { font-size: 31px; border-top: medium ridge #494949; border-left: medium ridge #494949; border-right: medium ridge #0E0E0E; border-bottom: medium ridge #0E0E0E; display: inline; background-color: #666666; color: #FFFFFF; }
+textarea:focus,input:focus,select:focus,option:focus { border: medium solid #FC3C00; display: inline; }
+textarea.noborder:focus,textarea.noborder,input.noborder:focus,input.noborder { border: 0px none #202020; background-color: transparent; }
+span.input,div.input { color: #FFFFFF; }
+span.input_focus,div.input_focus { border: 0px none #202020; color: #FC3C00; }
+
+
+img{border:none!important}
+
+html{margin-left:40px}
+
