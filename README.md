@@ -1,7 +1,7 @@
 # What is this?
 
 
-A home-brew implementation of BMW's Online portal for ID2 CIC infotainment units.
+A home-brew implementation of BMW's Online portal for CIC High (8.8") infotainment units.
 
 If your telematics subscription is still active you can still access the original BMW servers. The public proxy that was accessible through Bluetooth tethering was shut down around 2018.
 
@@ -138,8 +138,8 @@ Hook up a simple UART (57600) adapter to those pins and you will see debug outpu
 
 1. Press l - login to level 1 (default access) with password "COMBOX__01HB".​
 
-2. Press 2 - log menu -> write to usb (usb drive plugged in to armrest).​
-   This creates a folder "Log\_\*day\*\_\*month\*\_\*year\*\_\_\*hour\*\_\*minutes\*\_\*seconds\*​
+2. Press 2 - log menu -> write to usb (usb drive plugged in to armrest).​  
+   This creates a folder "Log\_\*day\*\_\*month\*\_\*year\*\_\_\*hour\*\_\*minutes\*\_\*seconds\*​  
    Get Protect.DAT from subdirectory "HBHK" and rename it to "t.DAT".
 
 3. FTP into CIC and upload comboxconsole, rootpersists.DAT and t.DAT to /mnt/hbuser.
@@ -177,6 +177,10 @@ SIM_ENABLED_MB
 ### CIC
 
 ```
+DPAS_INDEX
+	dpas_3
+CONFIG_INDEX
+	config_index_3
 CONTACT_NUM_HOTLINE_0B				
 	nicht_aktiv						
 CONTACT_NUMBERS_DEALER
