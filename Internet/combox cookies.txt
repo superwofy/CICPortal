@@ -1,0 +1,86 @@
+ALTQ related functions disabled
+May 09 12:41:01    5 10000     0 pid 32803: [MSG]@987488 (32803.120): DC_CNCT Process requestCloseDataConnection Device="BT_PHONE"
+May 09 12:41:01    5 10000     0 pid 32803: [MSG]@987522 (32803.138): ONL_DUMMAdapter:COMMON; onGetCookiesSTARTRESULTACK(): CookieName=VEHICLEAUTH, SIHandle=1
+May 09 12:41:01    5 10000     0 pid 32803: [MSG]@987523 (32803.138): ONL_DUMMAdapter:COMMON; responseGetCookie()[1]
+May 09 12:41:01    5 10000     0 pid 32803: [MSG]@987523 (32803.138): ONL_DUMMAdapter:COMMON; -> Value = 4
+May 09 12:41:01    5 10000     0 pid 32803: [MSG]@987523 (32803.138): ONL_DUMMAdapter:COMMON; -> Domain = 127.0.0.1
+May 09 12:41:01    5 10000     0 pid 32803: [MSG]@987524 (32803.138): ONL_DUMMAdapter:COMMON; -> Path = /
+May 09 12:41:01    5 10000     0 pid 32803: [MSG]@987524 (32803.138): ONL_DUMMAdapter:COMMON; -> Expires = 23518
+May 09 12:41:01    5 10000     0 pid 32803: [MSG]@987524 (32803.138): ONL_DUMMAdapter:COMMON; -> MaxAge = -1
+May 09 12:41:01    5 10000     0 pid 32803: [MSG]@987530 (32803.138): ONL_DUMMAdapter:COMMON; onGetCookiesSTARTRESULTACK(): CookieName=VINRN, SIHandle=2
+May 09 12:41:01    5 10000     0 pid 32803: [MSG]@987531 (32803.138): ONL_DUMMAdapter:COMMON; responseGetCookie()[2]
+May 09 12:41:01    5 10000     0 pid 32803: [MSG]@987531 (32803.138): ONL_DUMMAdapter:COMMON; -> Value = **VIN**
+May 09 12:41:01    5 10000     0 pid 32803: [MSG]@987531 (32803.138): ONL_DUMMAdapter:COMMON; -> Domain = 127.0.0.1
+May 09 12:41:01    5 10000     0 pid 32803: [MSG]@987532 (32803.138): ONL_DUMMAdapter:COMMON; -> Path = /
+No ALTQ support in kernel
+ALTQ related functions disabled
+May 09 12:41:01    5 10000     0 pid 32803: [MSG]@987533 (32803.138): ONL_DUMMAdapter:COMMON; -> Expires = 23518
+May 09 12:41:01    5 10000     0 pid 32803: [MSG]@987533 (32803.138): ONL_DUMMAdapter:COMMON; -> MaxAge = -1
+May 09 12:41:01    5 10000     0 pid 32803: [MSG]@987536 (32803.138): ONL_DUMMAdapter:COMMON; onGetCookiesSTARTRESULTACK(): CookieName=VEHICLEAUTH, SIHandle=3
+May 09 12:41:01    5 10000     0 pid 32803: [MSG]@987538 (32803.138): ONL_DUMMAdapter:COMMON; responseGetCookie()[3]
+May 09 12:41:01    5 10000     0 pid 32803: [MSG]@987538 (32803.138): ONL_DUMMAdapter:COMMON; -> Value = 4
+May 09 12:41:01    5 10000     0 pid 32803: [MSG]@987539 (32803.138): ONL_DUMMAdapter:COMMON; -> Domain = 127.0.0.1
+May 09 12:41:01    5 10000     0 pid 32803: [MSG]@987539 (32803.138): ONL_DUMMAdapter:COMMON; -> Path = /
+May 09 12:41:01    5 10000     0 pid 32803: [MSG]@987539 (32803.138): ONL_DUMMAdapter:COMMON; -> Expires = 23518
+May 09 12:41:01    5 10000     0 pid 32803: [MSG]@987541 (32803.138): ONL_DUMMAdapter:COMMON; -> MaxAge = -1
+May 09 12:41:01    5 10000     0 pid 32803: [MSG]@987543 (32803.138): ONL_DUMMAdapter:COMMON; onGetCookiesSTARTRESULTACK(): CookieName=VINRN, SIHandle=4
+May 09 12:41:01    5 10000     0 pid 32803: [MSG]@987544 (32803.138): ONL_DUMMAdapter:COMMON; onGetCookiesSTARTRESULTACK(): CookieName=USERAUTH, SIHandle=5
+May 09 12:41:01    5 10000     0 pid 32803: [MSG]@987546 (32803.138): ONL_DUMMAdapter:COMMON; responseGetCookie()[4]
+May 09 12:41:01    5 10000     0 pid 32803: [MSG]@987547 (32803.138): ONL_DUMMAdapter:COMMON; -> Value = **VIN**
+No ALTQ support in kernel
+ALTQ related functions disabled
+May 09 12:41:01    5 10000     0 pid 32803: [MSG]@987548 (32803.138): ONL_DUMMAdapter:COMMON; -> Domain = 127.0.0.1
+May 09 12:41:01    5 10000     0 pid 32803: [MSG]@987549 (32803.138): ONL_DUMMAdapter:COMMON; -> Path = /
+May 09 12:41:01    5 10000     0 pid 32803: [MSG]@987549 (32803.138): ONL_DUMMAdapter:COMMON; -> Expires = 23518
+May 09 12:41:01    5 10000     0 pid 32803: [MSG]@987549 (32803.138): ONL_DUMMAdapter:COMMON; -> MaxAge = -1
+May 09 12:41:01    5 10000     0 pid 32803: [MSG]@987550 (32803.138): ONL_DUMMAdapter:COMMON; responseGetCookie()[5]
+May 09 12:41:01    5 10000     0 pid 32803: [MSG]@987551 (32803.138): ONL_DUMMAdapter:COMMON; -> Value = 4
+May 09 12:41:01    5 10000     0 pid 32803: [MSG]@987552 (32803.138): ONL_DUMMAdapter:COMMON; -> Domain = 127.0.0.1
+May 09 12:41:01    5 10000     0 pid 32803: [MSG]@987553 (32803.138): ONL_DUMMAdapter:COMMON; -> Path = /
+May 09 12:41:01    5 10000     0 pid 32803: [MSG]@987553 (32803.138): ONL_DUMMAdapter:COMMON; -> Expires = 23518
+May 09 12:41:01    5 10000     0 pid 32803: [MSG]@987554 (32803.138): ONL_DUMMAdapter:COMMON; -> MaxAge = -1
+May 09 12:41:01    5 10000     0 pid 32803: [MSG]@987555 (32803.138): ONL_DUMMAdapter:COMMON; onGetCookiesSTARTRESULTACK(): CookieName=VEHICLEAUTH, SIHandle=6
+May 09 12:41:01    5 10000     0 pid 32803: [MSG]@987557 (32803.138): ONL_DUMMAdapter:COMMON; responseGetCookie()[6]
+May 09 12:41:01    5 10000     0 pid 32803: [MSG]@987557 (32803.138): ONL_DUMMAdapter:COMMON; -> Value = 4
+No ALTQ support in kernel
+ALTQ related functions disabled
+May 09 12:41:01    5 10000     0 pid 32803: [MSG]@987558 (32803.138): ONL_DUMMAdapter:COMMON; -> Domain = 127.0.0.1
+May 09 12:41:01    5 10000     0 pid 32803: [MSG]@987558 (32803.138): ONL_DUMMAdapter:COMMON; -> Path = /
+May 09 12:41:01    5 10000     0 pid 32803: [MSG]@987558 (32803.138): ONL_DUMMAdapter:COMMON; -> Expires = 23518
+May 09 12:41:01    5 10000     0 pid 32803: [MSG]@987559 (32803.138): ONL_DUMMAdapter:COMMON; -> MaxAge = -1
+May 09 12:41:01    5 10000     0 pid 32803: [MSG]@987561 (32803.138): ONL_DUMMAdapter:COMMON; onGetCookiesSTARTRESULTACK(): CookieName=VINRN, SIHandle=7
+May 09 12:41:01    5 10000     0 pid 32803: [MSG]@987561 (32803.138): ONL_DUMMAdapter:COMMON; responseGetCookie()[7]
+May 09 12:41:01    5 10000     0 pid 32803: [MSG]@987563 (32803.138): ONL_DUMMAdapter:COMMON; -> Value = **VIN**
+May 09 12:41:01    5 10000     0 pid 32803: [MSG]@987564 (32803.138): ONL_DUMMAdapter:COMMON; -> Domain = 127.0.0.1
+May 09 12:41:01    5 10000     0 pid 32803: [MSG]@987565 (32803.138): ONL_DUMMAdapter:COMMON; -> Path = /
+May 09 12:41:01    5 10000     0 pid 32803: [MSG]@987565 (32803.138): ONL_DUMMAdapter:COMMON; -> Expires = 23518
+May 09 12:41:01    5 10000     0 pid 32803: [MSG]@987566 (32803.138): ONL_DUMMAdapter:COMMON; -> MaxAge = -1
+May 09 12:41:01    5 10000     0 pid 32803: [MSG]@987567 (32803.138): ONL_DUMMAdapter:COMMON; onGetCookiesSTARTRESULTACK(): CookieName=USERAUTH, SIHandle=8
+May 09 12:41:01    5 10000     0 pid 32803: [MSG]@987568 (32803.138): ONL_DUMMAdapter:COMMON; onGetCookiesSTARTRESULTACK(): CookieName=VEHICLEAUTH, SIHandle=9
+May 09 12:41:01    5 10000     0 pid 32803: [MSG]@987570 (32803.138): ONL_DUMMAdapter:COMMON; responseGetCookie()[8]
+No ALTQ support in kernel
+ALTQ related functions disabled
+May 09 12:41:01    5 10000     0 pid 32803: [MSG]@987571 (32803.138): ONL_DUMMAdapter:COMMON; -> Value = 4
+May 09 12:41:01    5 10000     0 pid 32803: [MSG]@987571 (32803.138): ONL_DUMMAdapter:COMMON; -> Domain = 127.0.0.1
+May 09 12:41:01    5 10000     0 pid 32803: [MSG]@987572 (32803.138): ONL_DUMMAdapter:COMMON; -> Path = /
+May 09 12:41:01    5 10000     0 pid 32803: [MSG]@987573 (32803.138): ONL_DUMMAdapter:COMMON; -> Expires = 23518
+May 09 12:41:01    5 10000     0 pid 32803: [MSG]@987573 (32803.138): ONL_DUMMAdapter:COMMON; -> MaxAge = -1
+May 09 12:41:01    5 10000     0 pid 32803: [MSG]@987574 (32803.138): ONL_DUMMAdapter:COMMON; responseGetCookie()[9]
+May 09 12:41:01    5 10000     0 pid 32803: [MSG]@987575 (32803.138): ONL_DUMMAdapter:COMMON; -> Value = 4
+May 09 12:41:01    5 10000     0 pid 32803: [MSG]@987576 (32803.138): ONL_DUMMAdapter:COMMON; -> Domain = 127.0.0.1
+May 09 12:41:01    5 10000     0 pid 32803: [MSG]@987576 (32803.138): ONL_DUMMAdapter:COMMON; -> Path = /
+May 09 12:41:01    5 10000     0 pid 32803: [MSG]@987577 (32803.138): ONL_DUMMAdapter:COMMON; -> Expires = 23518
+May 09 12:41:01    5 10000     0 pid 32803: [MSG]@987577 (32803.138): ONL_DUMMAdapter:COMMON; -> MaxAge = -1
+May 09 12:41:01    5 10000     0 pid 32803: [MSG]@987578 (32803.138): ONL_DUMMAdapter:COMMON; onGetCookiesSTARTRESULTACK(): CookieName=JSESSIONID, SIHandle=10
+May 09 12:41:01    5 10000     0 pid 32803: [MSG]@987579 (32803.138): ONL_DUMMAdapter:COMMON; responseGetCookie()[10]
+No ALTQ support in kernel
+ALTQ related functions disabled
+May 09 12:41:01    5 10000     0 pid 32803: [MSG]@987580 (32803.138): ONL_DUMMAdapter:COMMON; -> Value = 1
+May 09 12:41:01    5 10000     0 pid 32803: [MSG]@987580 (32803.138): ONL_DUMMAdapter:COMMON; -> Domain = 127.0.0.1
+May 09 12:41:01    5 10000     0 pid 32803: [MSG]@987581 (32803.138): ONL_DUMMAdapter:COMMON; -> Path = /
+May 09 12:41:01    5 10000     0 pid 32803: [MSG]@987581 (32803.138): ONL_DUMMAdapter:COMMON; -> Expires = 23518
+May 09 12:41:01    5 10000     0 pid 32803: [MSG]@987581 (32803.138): ONL_DUMMAdapter:COMMON; -> MaxAge = -1
+May 09 12:41:02    5 10000     0 pid 32803: [MSG]@988594 (32803.124): [DC_DC2]onCloseAccessSTARTRESULTACK()
+May 09 12:41:02    5 10000     0 pid 32803: [MSG]@988595 (32803.119): [DC_ACM] reqCloseAccess
+May 09 12:41:02    5 10000     0 pid 32803: [MSG]@988595 (32803.119): [DC_ACM]AppCode = 0, BlockingMethod = 0x3h have been added to list, SessionHandle = 0x2Bh
+May 09 12:41:02    5 10000     0 pid 32803: [MSG]@988596 (32803.119): [DC_ACM]Access related methods have been blocked before by method 0x2h (AppCode = 4, SessionHandle = 0x2Ah)

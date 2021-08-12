@@ -151,14 +151,16 @@ Hook up a simple UART (57600) adapter to those pins and you will see debug outpu
 5. l - login, 6 - Show Passwords
 
 
-Modify the XML provided to include your proxy IP. Place your modified XMLs to the root of a usb drive in a folder named "xml", log in as root on the Combox and exit to shell (0). Run:  
+Modify the XML provided (dpas_003.xml) to include your proxy IP. Place your modified XMLs to the root of a usb drive in a folder named "xml", log in as root on the Combox and exit to shell (0). Run:  
 
-`mount -o remount rw /HBProvisioning && cp /mnt/umass00100t12/xml/* /HBProvisioning/xml/ && mount -o remount ro /HBProvisioning && rm -r /HBProvisioningDyn/* && slay BMW_MAIN`
+`mount -o remount rw /HBProvisioning && cp /fs/usb0/xml/* /HBProvisioning/xml/ && mount -o remount ro /HBProvisioning && rm -r /HBProvisioningDyn/* && slay BMW_MAIN`
 
 
 
 ## Coding
 
+Code CIC and Combox with #0911 $614 $615 $6AL.
+I recommend the following parameters to improve integration and ensure the correct fallback xml is loaded:
 
 ### Combox
 
@@ -174,7 +176,18 @@ SIM_ENABLED_MB
 
 ### CIC
 
-
+```
+CONTACT_NUM_HOTLINE_0B				
+	nicht_aktiv						
+CONTACT_NUMBERS_DEALER
+	nicht_aktiv
+CONTACT_NUMBERS_BCALL_0B
+	nicht_aktiv
+ONLINE_BROWSER_C0D
+	nur_bmw_online_aktiv
+ONLINE_BROWSER_LIVE
+	nicht_aktiv
+```
 
 
 ## Provisioning
@@ -191,6 +204,9 @@ To load manually with Tool32:
 3. Select job schreiben_ota, set argument C:\provision.xml and execute.
 
 
+**HIBackEnd_1.xml is an example Harman provisioning file included in the combox. This should give you an idea of what other features are available should you wish to implement them.
+
+
 
 
 ## Notes/gotchas
@@ -198,7 +214,7 @@ To load manually with Tool32:
 * The proxy defined in the provisioning XML must be an IPv4 instead of a domain name. Domain names cannot be resolved at this stage.
 * The server address can be defined as both a domain name or IPv4. Setting to an IP should save on a DNS query.
 * Setting addresses such as BON and provisioning to 127.0.0.1 speeds up access since Squid won't have to make a DNS query.
-* Static assets such as PNGs are cached but only for the current session.
+* Static assets such as PNGs for the current session. Set cache headers to persist cache.
 * PSIM (Prefit SIM), CSIM (Customer SIM)
 * The Ghidra module for SH4 is quite good.
 

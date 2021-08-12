@@ -1,0 +1,4 @@
+Jan 01 00:01:52    5 10000     0 pid 29: [MSG]@112698 (29.231): Event VADone has been received
+Jan 01 00:01:52    5 10000     0 pid 29: [MSG]@112699 (29.231): Transition Authentication_2631 --> Authentication_2631 (substates of ConnectionLoadUrl_0)
+Jan 01 00:01:52    5 10000     0 pid 29: [MSG]@112700 (29.231): bpc: vehicleDone( )
+Jan 01 00:01:52    5 10000     0 pid 29: [MSG]@112701 (29.231): bpc: vehicle auth not successful
