@@ -14,9 +14,9 @@ Only the Online / Live section is implemented. Internet requires binauth (I have
 
 ## Portal features
 
-News - powered by 68knews  
+News - powered by 68knews (ActionRetro/68k-news)  
 Weather - parsed from weather.com  
-Search - powered by frogfind  
+Search - powered by frogfind (ActionRetro/FrogFind)  
 A somewhat crude lap timer  
 A world clock  
 Whatever else you wish to add :)
