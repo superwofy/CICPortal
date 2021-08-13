@@ -1,6 +1,5 @@
 <?php
 
-
 $lat = $_GET['lat'];
 $long = $_GET['long'];
 
@@ -20,15 +19,17 @@ $VIN = ctype_alnum($VIN) ? $VIN : "E000000";
 
 $weather_data = file_get_contents("http://127.0.0.1/weather/get-weather.php?lat={$lat}&long={$long}&VIN={$VIN}");
 
+header("Content-type: application/xhtml+xml");
+
 ?>
-
 <?php if ($weather_data == "failed") : ?>
-
-<!DOCTYPE html>
-<html>
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
 <title>CIC Portal >> Weather Error</title>
-<?php if (isset($_COOKIE['development'])) echo '<link href="/assets/css/default_bon.css" type="text/css" rel="stylesheet">'; ?>
+<?php if (isset($_COOKIE['development'])) echo '<link href="/assets/css/default_bon.css" type="text/css" rel="stylesheet"/>'; ?>
 </head>
 <body>
 <p style="text-align:center;margin-top:150px">Weather data unavailable for this location!</p>
@@ -37,15 +38,15 @@ $weather_data = file_get_contents("http://127.0.0.1/weather/get-weather.php?lat=
 </html> 
 
 <?php else : ?>
-
 <?php $weather_data = json_decode($weather_data); ?>
-
-<!DOCTYPE html>
-<html>
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
 <title>CIC Portal > Weather</title>
-<?php if (isset($_COOKIE['development'])) echo '<link href="/assets/css/default_bon.css" type="text/css" rel="stylesheet">'; ?>
-<style>table{table-layout:fixed;width:100%;border-spacing:0}h1{margin-bottom:20px;font-size:30px;text-align:center}td{font-size:22px;border-right:3px solid #494949}th{border-right:3px solid #494949}tr{text-align:center}.heading{font-size:28px}.temp{font-size:36px}.nobr{border:0}p{font-size:28px;line-height:40px}</style>
+<?php if (isset($_COOKIE['development'])) echo '<link href="/assets/css/default_bon.css" type="text/css" rel="stylesheet"/>'; ?>
+<style type="text/css">table{table-layout:fixed;width:100%;border-spacing:0}h1{margin-top:20px;margin-bottom:20px;font-size:30px;text-align:center}td{font-size:22px;border-right:3px solid #494949}th{border-right:3px solid #494949}tr{text-align:center}.heading{font-size:28px}.temp{font-size:36px}.nobr{border:0}p{font-size:28px;line-height:40px}</style>
 </head>
 <body>
 <h1><?php echo $weather_data->forecast_header_value; ?></h1>
@@ -63,10 +64,10 @@ $weather_data = file_get_contents("http://127.0.0.1/weather/get-weather.php?lat=
 <td class="temp nobr"><?php echo $weather_data->today_overnight_temperature; ?></td>
 </tr>
 <tr>
-<td><img src="/assets/img/weather-64/<?php echo $weather_data->today_morning_condition; ?>.png"></td>
-<td><img src="/assets/img/weather-64/<?php echo $weather_data->today_afternoon_condition; ?>.png"></td>
-<td><img src="/assets/img/weather-64/<?php echo $weather_data->today_evening_condition; ?>.png"></td>
-<td class="nobr"><img src="/assets/img/weather-64/<?php echo $weather_data->today_overnight_condition; ?>.png"></td>
+<td><img src="/assets/img/weather-64/<?php echo $weather_data->today_morning_condition; ?>.png" alt=""/></td>
+<td><img src="/assets/img/weather-64/<?php echo $weather_data->today_afternoon_condition; ?>.png"  alt=""/></td>
+<td><img src="/assets/img/weather-64/<?php echo $weather_data->today_evening_condition; ?>.png"  alt=""/></td>
+<td class="nobr"><img src="/assets/img/weather-64/<?php echo $weather_data->today_overnight_condition; ?>.png" alt=""/></td>
 </tr>
 <tr>
 <td><?php echo $weather_data->today_morning_condition; ?></td>
@@ -81,7 +82,6 @@ $weather_data = file_get_contents("http://127.0.0.1/weather/get-weather.php?lat=
 <td class="nobr"><?php echo $weather_data->today_overnight_precipitation; ?></td>
 </tr>
 </table>
-<br>
 <h1>Hourly Forecast</h1>
 <table>
 <tr class="heading">
@@ -97,10 +97,10 @@ $weather_data = file_get_contents("http://127.0.0.1/weather/get-weather.php?lat=
 <td class="temp nobr"><?php echo $weather_data->three_hours_temperature; ?></td>
 </tr>
 <tr>
-<td><img src="/assets/img/weather-64/<?php echo $weather_data->now_condition; ?>.png"></td>
-<td><img src="/assets/img/weather-64/<?php echo $weather_data->one_hour_condition; ?>.png"></td>
-<td><img src="/assets/img/weather-64/<?php echo $weather_data->two_hours_condition; ?>.png"></td>
-<td class="nobr"><img src="/assets/img/weather-64/<?php echo $weather_data->three_hours_condition; ?>.png"></td>
+<td><img src="/assets/img/weather-64/<?php echo $weather_data->now_condition; ?>.png" alt=""/></td>
+<td><img src="/assets/img/weather-64/<?php echo $weather_data->one_hour_condition; ?>.png" alt=""/></td>
+<td><img src="/assets/img/weather-64/<?php echo $weather_data->two_hours_condition; ?>.png" alt=""/></td>
+<td class="nobr"><img src="/assets/img/weather-64/<?php echo $weather_data->three_hours_condition; ?>.png" alt=""/></td>
 </tr>
 <tr>
 <td><?php echo $weather_data->now_condition; ?></td>
@@ -115,7 +115,6 @@ $weather_data = file_get_contents("http://127.0.0.1/weather/get-weather.php?lat=
 <td class="nobr"><?php echo $weather_data->three_hours_precipitation; ?></td>
 </tr>
 </table>
-<br>
 <div class="info">
 <h1>Extra</h1>
 <p><?php echo $weather_data->map_phrase; ?></p>
@@ -124,5 +123,4 @@ $weather_data = file_get_contents("http://127.0.0.1/weather/get-weather.php?lat=
 </div>
 </body>
 </html> 
-
 <?php endif; ?>

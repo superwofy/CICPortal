@@ -1,0 +1,189 @@
+09c6c999 6d 65 73   "message/*"
+73 61 67 
+65 2f 2a 00
+09c6c9a3 6d 75 6c   "multipart/*"
+74 69 70 
+61 72 74 
+09c6c9af 78 2d 77   "x-world/*"
+6f 72 6c 
+64 2f 2a 00
+09c6c9b9 74 65 78   "text/html"
+74 2f 68 
+74 6d 6c 00
+09c6c9c3 61 70 70   "application/xhtml+xml"
+6c 69 63 
+61 74 69 
+09c6c9d9 74 65 78   "text/plain"
+74 2f 70 
+6c 61 69 
+09c6c9e4 74 65 78   "text/xml"
+74 2f 78 
+6d 6c 00
+09c6c9ed 61 70 70   "application/xml"
+6c 69 63 
+61 74 69 
+09c6c9fd 69 6d 61   "image/gif"
+67 65 2f 
+67 69 66 00
+09c6ca07 69 6d 61   "image/jpeg"
+67 65 2f 
+6a 70 65 
+09c6ca12 69 6d 61   "image/pjpeg"
+67 65 2f 
+70 6a 70 
+09c6ca1e 69 6d 61   "image/png"
+67 65 2f 
+70 6e 67 00
+09c6ca28 69 6d 61   "image/bmp"
+67 65 2f 
+62 6d 70 00
+09c6ca32 76 69 64   "video/x-mng"
+65 6f 2f 
+78 2d 6d 
+09c6ca3e 74 65 78   "text/css"
+74 2f 63 
+73 73 00
+09c6ca47 74 65 78   "text/javascript"
+74 2f 6a 
+61 76 61 
+09c6ca57 61 70 70   "application/x-javascript"
+6c 69 63 
+61 74 69 
+09c6ca70 61 70 70   "application/smil"
+6c 69 63 
+61 74 69 
+09c6ca81 6d 65 73   "message/rfc822"
+73 61 67 
+65 2f 72 
+09c6ca90 6d 75 6c   "multipart/mixed"
+74 69 70 
+61 72 74 
+09c6caa0 6d 75 6c   "multipart/related"
+74 69 70 
+61 72 74 
+09c6cab2 6d 75 6c   "multipart/alternative"
+74 69 70 
+61 72 74 
+09c6cac8 6d 75 6c   "multipart/byteranges"
+74 69 70 
+61 72 74 
+09c6cadd 61 70 70   "application/rdf+xml"
+6c 69 63 
+61 74 69 
+09c6caf1 61 70 70   "application/rss+xml"
+6c 69 63 
+61 74 69 
+09c6cb05 61 70 70   "application/atom+xml"
+6c 69 63 
+61 74 69 
+09c6cb1a 61 70 70   "application/opml+xml"
+6c 69 63 
+61 74 69 
+09c6cb2f 61 70 70   "application/x-netcdf"
+6c 69 63 
+61 74 69 
+09c6cb44 61 70 70   "application/x-xbel"
+6c 69 63 
+61 74 69 
+09c6cb57 61 70 70   "application/x-url"
+6c 69 63 
+61 74 69 
+09c6cb69 74 65 78   "text/vnd.wap.wml"
+74 2f 76 
+6e 64 2e 
+09c6cb7a 69 6d 61   "image/vnd.wap.wbmp"
+67 65 2f 
+76 6e 64 
+09c6cb8d 74 65 78   "text/vnd.wap.wmlscript"
+74 2f 76 
+6e 64 2e 
+09c6cba4 61 70 70   "application/vnd.wap.xhtml+xml"
+6c 69 63 
+61 74 69 
+09c6cbc2 61 70 70   "application/vnd.wap.wbxml"
+6c 69 63 
+61 74 69 
+09c6cbdc 61 70 70   "application/vnd.wap.wmlc"
+6c 69 63 
+61 74 69 
+09c6cbf5 61 70 70   "application/vnd.wap.wmlsc"
+6c 69 63 
+61 74 69 
+09c6cc0f 61 70 70   "application/vnd.wap.wmlscriptc"
+6c 69 63 
+61 74 69 
+09c6cc2e 69 6d 61   "image/svg+xml"
+67 65 2f 
+73 76 67 
+09c6cc3c 61 70 70   "application/pdf"
+6c 69 63 
+61 74 69 
+09c6cc4c 61 70 70   "application/x-shockwave-flash"
+6c 69 63 
+61 74 69 
+09c6cc6a 61 70 70   "application/futuresplash"
+6c 69 63 
+61 74 69 
+09c6cc83 61 70 70   "application/x-director"
+6c 69 63 
+61 74 69 
+09c6cc9a 61 75 64   "audio/x-pn-realaudio"
+69 6f 2f 
+78 2d 70 
+09c6ccaf 61 70 70   "application/x-java"
+6c 69 63 
+61 74 69 
+09c6ccc2 61 75 64   "audio/midi"
+69 6f 2f 
+6d 69 64 
+09c6cccd 61 75 64   "audio/x-wav"
+69 6f 2f 
+78 2d 77 
+09c6ccd9 61 75 64   "audio/x-aiff"
+69 6f 2f 
+78 2d 61 
+09c6cce6 61 75 64   "audio/basic"
+69 6f 2f 
+62 61 73 
+09c6ccf2 76 69 64   "video/mpeg"
+65 6f 2f 
+6d 70 65 
+09c6ccfd 61 75 64   "audio/mpeg"
+69 6f 2f 
+6d 70 65 
+09c6cd08 61 70 70   "application/vnd.oma.drm.message"
+6c 69 63 
+61 74 69 
+09c6cd28 61 70 70   "application/vnd.oma.drm.rights+xml"
+6c 69 63 
+61 74 69 
+09c6cd4b 61 70 70   "application/vnd.oma.drm.rights+wbxml"
+6c 69 63 
+61 74 69 
+09c6cd70 61 70 70   "application/vnd.oma.drm.content"
+6c 69 63 
+61 74 69 
+09c6cd90 61 70 70   "application/x-www-form-urlencoded"
+6c 69 63 
+61 74 69 
+09c6cdb2 6d 75 6c   "multipart/form-data"
+74 69 70 
+61 72 74 
+09c6cdc6 61 70 70   "application/octet-stream"
+6c 69 63 
+61 74 69 
+09c6cddf 61 70 70   "application/x-gzip"
+6c 69 63 
+61 74 69 
+09c6cdf2 61 70 70   "application/x-tar"
+6c 69 63 
+61 74 69 
+09c6ce04 61 70 70   "application/zip"
+6c 69 63 
+61 74 69 
+09c6ce14 76 69 64   "video/x-msvideo"
+65 6f 2f 
+78 2d 6d 
+09c6ce24 76 69 64   "video/quicktime"
+65 6f 2f 
+71 75 69 

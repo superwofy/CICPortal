@@ -13,5 +13,4 @@ if (file_exists('provision.xml')) {
 	echo $bmwprov->asXML();
 }
 
-
 ?>

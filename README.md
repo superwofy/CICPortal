@@ -159,7 +159,7 @@ Modify the XML provided (dpas_003.xml) to include your proxy IP. Place your modi
 
 ## Coding
 
-Code CIC and Combox with #0911 $614 $615 $6AL.
+Code CIC and Combox with #0911 and $6AL.
 I recommend the following parameters to improve integration and ensure the correct fallback xml is loaded:
 
 ### Combox
@@ -215,6 +215,7 @@ To load manually with Tool32:
 
 ## Notes/gotchas
 
+* If provisioning works successfully via tethering but BMW Online/Live does not (gets stuck on 'Starting'), run Tool32 job STEUERN_RESET_TO_BASIC_STATE with argument 0x00000000, and re-pair the phone.
 * The proxy defined in the provisioning XML must be an IPv4 instead of a domain name. Domain names cannot be resolved at this stage.
 * The server address can be defined as both a domain name or IPv4. Setting to an IP should save on a DNS query.
 * Setting addresses such as BON and provisioning to 127.0.0.1 speeds up access since Squid won't have to make a DNS query.
