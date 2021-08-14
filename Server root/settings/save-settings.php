@@ -5,8 +5,7 @@ $message = "Failed to save settings!";
 if (!empty($_POST)) {
 	$saved = true;
 	$settings = new stdClass();
-	$VIN = isset($_SERVER['HTTP_BMW_VIN']) ? $_SERVER['HTTP_BMW_VIN'] : "E000000";
-	$VIN = ctype_alnum($VIN) ? $VIN : "E000000";
+	$VIN = isset($_SERVER['HTTP_BMW_VIN']) ? (ctype_alnum($VIN) ? $VIN : "E000000") : "E000000";
 	$settings->welcomemsg = isset($_POST['welcomemsg']) ? $_POST['welcomemsg'] : "";
 	$settings->message_color = isset($_POST['welcomemsg-color']) ? $_POST['welcomemsg-color'] : "#80B0DC";
 	$settings->date_color = isset($_POST['date-color']) ? $_POST['date-color'] : "#80B0DC";

@@ -1,8 +1,7 @@
 <?php
 $lat = isset($_GET['lat']) ? $_GET['lat'] : "0";
 $long = isset($_GET['long']) ? $_GET['long'] : "0";
-$VIN = isset($_SERVER['HTTP_BMW_VIN']) ? $_SERVER['HTTP_BMW_VIN'] : "E000000";
-$VIN = ctype_alnum($VIN) ? $VIN : "E000000";
+$VIN = isset($_SERVER['HTTP_BMW_VIN']) ? (ctype_alnum($VIN) ? $VIN : "Not provided") : "Not provided";
 header("Content-type: application/xhtml+xml");
 ?>
 <?xml version="1.0" encoding="utf-8"?>

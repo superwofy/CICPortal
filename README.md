@@ -219,7 +219,8 @@ To load manually with Tool32:
 * The proxy defined in the provisioning XML must be an IPv4 instead of a domain name. Domain names cannot be resolved at this stage.
 * The server address can be defined as both a domain name or IPv4. Setting to an IP should save on a DNS query.
 * Setting addresses such as BON and provisioning to 127.0.0.1 speeds up access since Squid won't have to make a DNS query.
-* Static assets such as PNGs for the current session. Set cache headers to persist cache.
+* Static assets such as PNGs are cached for the current session. Set cache headers to persist cache.
+* Gzip compression is supported.
 * PSIM (Prefit SIM), CSIM (Customer SIM)
 * The Ghidra module for SH4 is quite good.
 

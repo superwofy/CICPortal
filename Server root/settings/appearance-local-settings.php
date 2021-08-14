@@ -1,7 +1,6 @@
 <?php
 
-$VIN = isset($_SERVER['HTTP_BMW_VIN']) ? $_SERVER['HTTP_BMW_VIN'] : "E000000";
-$VIN = ctype_alnum($VIN) ? $VIN : "E000000";
+$VIN = isset($_SERVER['HTTP_BMW_VIN']) ? (ctype_alnum($VIN) ? $VIN : "E000000") : "E000000";
 $filename = getcwd().'/vehicle/'.$VIN.'.json';
 $settings = "";
 

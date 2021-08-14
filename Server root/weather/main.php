@@ -13,9 +13,7 @@ $lat = $lat[0] . '.' . $lat[1];
 $long = str_split(str_split($long, 4)[0], 2);
 $long = $long[0] . '.' . $long[1];
 
-
-$VIN = isset($_SERVER['HTTP_BMW_VIN']) ? $_SERVER['HTTP_BMW_VIN'] : "E000000";
-$VIN = ctype_alnum($VIN) ? $VIN : "E000000";
+$VIN = isset($_SERVER['HTTP_BMW_VIN']) ? (ctype_alnum($VIN) ? $VIN : "E000000") : "E000000";
 
 $weather_data = file_get_contents("http://127.0.0.1/weather/get-weather.php?lat={$lat}&long={$long}&VIN={$VIN}");
 
