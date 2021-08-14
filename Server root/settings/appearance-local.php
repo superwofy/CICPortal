@@ -30,7 +30,7 @@ header("Content-type: application/xhtml+xml");
 <head>
 <title>CIC Portal >> Appearance</title>
 <?php if (isset($_COOKIE['development'])) echo '<link href="/assets/css/default_bon.css" type="text/css" rel="stylesheet"/>'; ?>
-<style type="text/css">body{font-size:32px;text-align:center;line-height:50px}p{margin-top:20px;margin-bottom:20px}input[type=text]{padding-left:20px}select{padding-left:20px;width:43%}input[type=submit]{margin:20px 0 20px 0}</style>
+<link href="/assets/css/appearance.css" type="text/css" rel="stylesheet"/>
 </head>
 <body>
 

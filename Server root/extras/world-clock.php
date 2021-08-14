@@ -26,7 +26,7 @@ header("Content-type: application/xhtml+xml");
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
 <title>CIC Portal >> World Clock</title>
-<style type="text/css">body{background-color:#eee;color:#000}h3{font-size:42px}table{width:100%;margin:20px;border:2px solid #000}.column{padding-left:10px;width:50%;float:left}.column2{font-size:70px;text-align:center;margin-left:3px;padding:30px 0 30px 0;width:47.8%}.top-p{font-size:28px;margin:15px 0 0 10px}.bg_dark{color:#fff;background-color:#000}.container{font-weight:700;margin:10px}.timeZone p{font-size:26px;font-style:italic}</style>
+<link href="/assets/css/clock.css" type="text/css" rel="stylesheet"/>
 </head>
 <body>
 <p id="debug"></p>
@@ -35,6 +35,6 @@ header("Content-type: application/xhtml+xml");
 <div class="container">
 <table id="clkTbl" class="timeZone"><tr style="display:none"><td/></tr></table>
 </div>
-<script type="text/javascript" src="clock.js"></script>
+<script type="text/javascript" src="/assets/js/clock.js"></script>
 </body>
 </html>

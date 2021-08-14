@@ -44,7 +44,7 @@ header("Content-type: application/xhtml+xml");
 <head>
 <title>CIC Portal > Weather</title>
 <?php if (isset($_COOKIE['development'])) echo '<link href="/assets/css/default_bon.css" type="text/css" rel="stylesheet"/>'; ?>
-<style type="text/css">table{table-layout:fixed;width:100%;border-spacing:0}h1{margin-top:20px;margin-bottom:20px;font-size:30px;text-align:center}td{font-size:22px;border-right:3px solid #494949}th{border-right:3px solid #494949}tr{text-align:center}.heading{font-size:28px}.temp{font-size:36px}.nobr{border:0}p{font-size:28px;line-height:40px}</style>
+<link href="/assets/css/weather.css" type="text/css" rel="stylesheet"/>
 </head>
 <body>
 <h1><?php echo $weather_data->forecast_header_value; ?></h1>

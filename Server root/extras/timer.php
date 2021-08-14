@@ -8,7 +8,7 @@ header("Content-type: application/xhtml+xml");
 <head>
 <title>CIC Portal >> Timer</title>
 <?php if (isset($_COOKIE['development'])) echo '<link href="/assets/css/default_bon.css" type="text/css" rel="stylesheet"/>'; ?>
-<style type="text/css">button{display:block;width:170px;margin-top:8px;margin-left:112px;font-size:32px}button:focus{border:medium solid #fc3c00}body{margin-top:20px}.column{float:left;width:50%;text-align:center}#laps{width:100%;border:1px solid #fff}.tcontainer{font-size:80px;margin-top:10px}</style>
+<link href="/assets/css/timer.css" type="text/css" rel="stylesheet"/>
 </head>
 <body>
 <div class="column">
@@ -23,6 +23,6 @@ header("Content-type: application/xhtml+xml");
 <div class="column">
 <table id="laps"><tr style="display:none"><td/></tr></table>
 </div>
-<script type="text/javascript" src="timer.js"></script>
+<script type="text/javascript" src="/assets/js/timer.js"></script>
 </body>
 </html> 

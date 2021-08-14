@@ -29,9 +29,9 @@ header("Content-type: application/xhtml+xml");
 <head>
 <title>CIC Portal Home</title>
 <?php if (isset($_COOKIE['development'])) echo '<link href="/assets/css/default_bon.css" type="text/css" rel="stylesheet"/>'; ?>
-<style type="text/css">a{border:2px solid #494949;margin:8px;color:#FFFFFD}a:focus{border-color:#FC3C00}a:active,a:active img{background-color:#0d0d0d}a:link,a:visited{display:block;width:100%}a:visited img{border:none}img{border:none;margin:0 30px -5px 30px}.column{margin-left:2%;float:left;width:48%}.column2{text-align:center}body{margin-top:20px}</style>
+<link href="/assets/css/main.css" type="text/css" rel="stylesheet"/>
 </head>
-<body>
+<body style="margin-top:20px">
 <div>
 <div class="column">
 <a href="<?php echo "/weather/main.php?lat={$lat}&amp;long={$long}"; ?>"><img src="/assets/img/clouds-32.png" height="32px" alt=""/>Weather</a>
