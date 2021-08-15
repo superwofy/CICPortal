@@ -224,8 +224,8 @@
 </cl>
 <config>
 <dummmaxpartsize>10240</dummmaxpartsize>
-<dummhttpresponsetimeout>120000</dummhttpresponsetimeout>
-<dummuseragent>Aetsch1</dummuseragent>
+<dummhttpresponsetimeout>35000</dummhttpresponsetimeout>
+<dummuseragent>CIC</dummuseragent>
 <dummabortpausetimeout>30000</dummabortpausetimeout>
 <dummusegzip>true</dummusegzip>
 <dummwaitreestablish>10000</dummwaitreestablish>

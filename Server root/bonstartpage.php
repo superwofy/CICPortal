@@ -2,7 +2,7 @@
 
 $lat = isset($_GET['lat']) ? $_GET['lat'] : "0";
 $long = isset($_GET['long']) ? $_GET['long'] : "0";
-$VIN = isset($_SERVER['HTTP_BMW_VIN']) ? (ctype_alnum($VIN) ? $VIN : "E000000") : "E000000";
+$VIN = isset($_SERVER['HTTP_BMW_VIN']) ? (ctype_alnum($_SERVER['HTTP_BMW_VIN']) ? $_SERVER['HTTP_BMW_VIN'] : "E000000") : "E000000";
 $filename = getcwd().'/settings/vehicle/'.$VIN.'.json';
 $settings = "";
 

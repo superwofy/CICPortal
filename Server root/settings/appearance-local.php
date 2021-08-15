@@ -1,6 +1,6 @@
 <?php
 
-$VIN = isset($_SERVER['HTTP_BMW_VIN']) ? (ctype_alnum($VIN) ? $VIN : "E000000") : "E000000";
+$VIN = isset($_SERVER['HTTP_BMW_VIN']) ? (ctype_alnum($_SERVER['HTTP_BMW_VIN']) ? $_SERVER['HTTP_BMW_VIN'] : "E000000") : "E000000";
 $filename = getcwd().'/vehicle/'.$VIN.'.json';
 $settings = "";
 
@@ -67,7 +67,7 @@ foreach ($colors as $key => $value){
 ?>
 </select>
 </div>
-<p><label> Right sidebar logo</label></p>
+<p><label>Right sidebar logo</label></p>
 <div>
 <select name="logo-setting">
 <?php
@@ -82,7 +82,7 @@ foreach ($images as $key => $value){
 ?>
 </select>
 </div>
-<p><label> Country</label></p>
+<p><label>Country</label></p>
 <div>
 <select name="country-setting">
 <?php
@@ -97,7 +97,7 @@ foreach ($countries as $key => $value){
 ?>
 </select>
 </div>
-<p><label> Timezone</label></p>
+<p><label>Timezone</label></p>
 <div>
 <select name="timezone">
 <?php

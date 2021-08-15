@@ -195,8 +195,7 @@ function request_weather() {
 
 $lat = $_GET['lat'];
 $long = $_GET['long'];
-$VIN = isset($_GET['VIN']) ? $_GET['VIN'] : "E000000";
-$VIN = ctype_alnum($VIN) ? $VIN : "E000000";
+$VIN = isset($_SERVER['HTTP_BMW_VIN']) ? (ctype_alnum($_SERVER['HTTP_BMW_VIN']) ? $_SERVER['HTTP_BMW_VIN'] : "E000000") : "E000000";
 $filepath = getcwd().'/cache/'.$VIN.'.json';
 
 if (file_exists($filepath)) {
