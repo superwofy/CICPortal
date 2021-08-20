@@ -62,10 +62,10 @@ header("Content-type: application/xhtml+xml");
 <td class="temp nobr"><?php echo $weather_data->today_overnight_temperature; ?></td>
 </tr>
 <tr>
-<td><img src="/assets/img/weather-64/<?php echo $weather_data->today_morning_condition; ?>.png" alt=""/></td>
-<td><img src="/assets/img/weather-64/<?php echo $weather_data->today_afternoon_condition; ?>.png"  alt=""/></td>
-<td><img src="/assets/img/weather-64/<?php echo $weather_data->today_evening_condition; ?>.png"  alt=""/></td>
-<td class="nobr"><img src="/assets/img/weather-64/<?php echo $weather_data->today_overnight_condition; ?>.png" alt=""/></td>
+<td><img src="/assets/img/weather-64/<?php echo str_replace(" ", '-', $weather_data->today_morning_condition); ?>.png" alt=""/></td>
+<td><img src="/assets/img/weather-64/<?php echo str_replace(" ", '-', $weather_data->today_afternoon_condition); ?>.png"  alt=""/></td>
+<td><img src="/assets/img/weather-64/<?php echo str_replace(" ", '-', $weather_data->today_evening_condition); ?>.png"  alt=""/></td>
+<td class="nobr"><img src="/assets/img/weather-64/<?php echo str_replace(" ", '-', $weather_data->today_overnight_condition); ?>.png" alt=""/></td>
 </tr>
 <tr>
 <td><?php echo $weather_data->today_morning_condition; ?></td>
@@ -76,8 +76,8 @@ header("Content-type: application/xhtml+xml");
 <tr>
 <td><?php echo $weather_data->today_morning_precipitation; ?></td>
 <td><?php echo $weather_data->today_afternoon_precipitation; ?></td>
-<td><?php echo $weather_data->today_evening_precipitation; ?></td>
-<td class="nobr"><?php echo $weather_data->today_overnight_precipitation; ?></td>
+<td><?php echo echo str_replace(" Night", '', $weather_data->today_evening_precipitation); ?></td>
+<td class="nobr"><?php echo echo str_replace(" Night", '', $weather_data->today_overnight_precipitation); ?></td>
 </tr>
 </table>
 <h1>Hourly Forecast</h1>
