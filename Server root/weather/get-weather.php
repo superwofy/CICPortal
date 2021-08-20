@@ -77,14 +77,14 @@ function request_weather() {
 
 
     $today_morning_temperature = $today_breakdown_list->childNodes[0]->childNodes[0]->childNodes[1]->childNodes[0]->nodeValue;                                                                                //ul-li -> a -> div -> span
-    $today_morning_condition = str_replace(" ", '-', $today_breakdown_list->childNodes[0]->childNodes[0]->childNodes[2]->childNodes[0]->childNodes[0]->nodeValue);                                            //ul-li -> a -> div -> svg -> title
+    $today_morning_condition = $today_breakdown_list->childNodes[0]->childNodes[0]->childNodes[2]->childNodes[0]->childNodes[0]->nodeValue;                                            //ul-li -> a -> div -> svg -> title
     $today_morning_precipitation = $today_breakdown_list->childNodes[0]->childNodes[0]->childNodes[3]->childNodes[0]->nodeValue;                                                                              //ul-li -> a -> div -> span
     if ($today_morning_precipitation != '--') {
         $today_morning_precipitation = str_replace("Chance of Rain", '', $today_breakdown_list->childNodes[0]->childNodes[0]->childNodes[3]->childNodes[1]->nodeValue) . ' chance of rain';                   //ul-li -> a -> div -> span
     }
 
     $today_afternoon_temperature = $today_breakdown_list->childNodes[1]->childNodes[0]->childNodes[1]->childNodes[0]->nodeValue;                          //ul-li -> a -> div -> span
-    $today_afternoon_condition = str_replace(" ", '-', $today_breakdown_list->childNodes[1]->childNodes[0]->childNodes[2]->childNodes[0]->childNodes[0]->nodeValue);             //ul-li -> a -> div -> svg -> title
+    $today_afternoon_condition = $today_breakdown_list->childNodes[1]->childNodes[0]->childNodes[2]->childNodes[0]->childNodes[0]->nodeValue;             //ul-li -> a -> div -> svg -> title
     $today_afternoon_precipitation = $today_breakdown_list->childNodes[1]->childNodes[0]->childNodes[3]->childNodes[0]->nodeValue;                        //ul-li -> a -> div -> span
     if ($today_afternoon_precipitation != '--') {
         $today_afternoon_precipitation = str_replace("Chance of Rain", '', $today_breakdown_list->childNodes[1]->childNodes[0]->childNodes[3]->childNodes[1]->nodeValue) . ' chance of rain';                    //ul-li -> a -> div -> span
@@ -92,7 +92,7 @@ function request_weather() {
 
 
     $today_evening_temperature = $today_breakdown_list->childNodes[2]->childNodes[0]->childNodes[1]->childNodes[0]->nodeValue;                          //ul-li -> a -> div -> span
-    $today_evening_condition = str_replace(" ", '-', $today_breakdown_list->childNodes[2]->childNodes[0]->childNodes[2]->childNodes[0]->childNodes[0]->nodeValue);             //ul-li -> a -> div -> svg -> title
+    $today_evening_condition = $today_breakdown_list->childNodes[2]->childNodes[0]->childNodes[2]->childNodes[0]->childNodes[0]->nodeValue;             //ul-li -> a -> div -> svg -> title
     $today_evening_precipitation = $today_breakdown_list->childNodes[2]->childNodes[0]->childNodes[3]->childNodes[0]->nodeValue;                        //ul-li -> a -> div -> span
     if ($today_evening_precipitation != '--') {
         $today_evening_precipitation = str_replace("Chance of Rain", '', $today_breakdown_list->childNodes[2]->childNodes[0]->childNodes[3]->childNodes[1]->nodeValue) . ' chance of rain';                    //ul-li -> a -> div -> span
@@ -100,7 +100,7 @@ function request_weather() {
 
 
     $today_overnight_temperature = $today_breakdown_list->childNodes[3]->childNodes[0]->childNodes[1]->childNodes[0]->nodeValue;                                                                               //ul-li -> a -> div -> span
-    $today_overnight_condition = str_replace(" ", '-', $today_breakdown_list->childNodes[3]->childNodes[0]->childNodes[2]->childNodes[0]->childNodes[0]->nodeValue);                                           //ul-li -> a -> div -> svg -> title
+    $today_overnight_condition = $today_breakdown_list->childNodes[3]->childNodes[0]->childNodes[2]->childNodes[0]->childNodes[0]->nodeValue;                                           //ul-li -> a -> div -> svg -> title
     $today_overnight_precipitation = $today_breakdown_list->childNodes[3]->childNodes[0]->childNodes[3]->childNodes[0]->nodeValue;                                                                             //ul-li -> a -> div -> span
     if ($today_overnight_precipitation != '--') {
         $today_overnight_precipitation = str_replace("Chance of Rain", '', $today_breakdown_list->childNodes[3]->childNodes[0]->childNodes[3]->childNodes[1]->nodeValue) . ' chance of rain';                    //ul-li -> a -> div -> span
@@ -117,22 +117,22 @@ function request_weather() {
     $hourly_breakdown_list = $nodes[0]->childNodes[1]->childNodes[0];                  //ul WeatherTable
 
     $now_temperature = $hourly_breakdown_list->childNodes[0]->childNodes[0]->childNodes[1]->childNodes[0]->nodeValue;
-    $now_condition = $hourly_breakdown_list->childNodes[0]->childNodes[0]->childNodes[2]->childNodes[0]->childNodes[0]->nodeValue);
+    $now_condition = $hourly_breakdown_list->childNodes[0]->childNodes[0]->childNodes[2]->childNodes[0]->childNodes[0]->nodeValue;
     $now_precipitation = $hourly_breakdown_list->childNodes[0]->childNodes[0]->childNodes[3]->childNodes[1]->childNodes[1]->nodeValue . ' chance of rain';
 
     $one_hour_heading = $hourly_breakdown_list->childNodes[1]->childNodes[0]->childNodes[0]->childNodes[0]->nodeValue;
     $one_hour_temperature = $hourly_breakdown_list->childNodes[1]->childNodes[0]->childNodes[1]->childNodes[0]->nodeValue;
-    $one_hour_condition = $hourly_breakdown_list->childNodes[1]->childNodes[0]->childNodes[2]->childNodes[0]->childNodes[0]->nodeValue);
+    $one_hour_condition = $hourly_breakdown_list->childNodes[1]->childNodes[0]->childNodes[2]->childNodes[0]->childNodes[0]->nodeValue;
     $one_hour_precipitation = $hourly_breakdown_list->childNodes[1]->childNodes[0]->childNodes[3]->childNodes[1]->childNodes[1]->nodeValue . ' chance of rain';
 
     $two_hours_heading = $hourly_breakdown_list->childNodes[2]->childNodes[0]->childNodes[0]->childNodes[0]->nodeValue;
     $two_hours_temperature = $hourly_breakdown_list->childNodes[2]->childNodes[0]->childNodes[1]->childNodes[0]->nodeValue;
-    $two_hours_condition = $hourly_breakdown_list->childNodes[2]->childNodes[0]->childNodes[2]->childNodes[0]->childNodes[0]->nodeValue);
+    $two_hours_condition = $hourly_breakdown_list->childNodes[2]->childNodes[0]->childNodes[2]->childNodes[0]->childNodes[0]->nodeValue;
     $two_hours_precipitation = $hourly_breakdown_list->childNodes[2]->childNodes[0]->childNodes[3]->childNodes[1]->childNodes[1]->nodeValue . ' chance of rain';
 
     $three_hours_heading = $hourly_breakdown_list->childNodes[3]->childNodes[0]->childNodes[0]->childNodes[0]->nodeValue;
     $three_hours_temperature = $hourly_breakdown_list->childNodes[3]->childNodes[0]->childNodes[1]->childNodes[0]->nodeValue;
-    $three_hours_condition = $hourly_breakdown_list->childNodes[3]->childNodes[0]->childNodes[2]->childNodes[0]->childNodes[0]->nodeValue);
+    $three_hours_condition = $hourly_breakdown_list->childNodes[3]->childNodes[0]->childNodes[2]->childNodes[0]->childNodes[0]->nodeValue;
     $three_hours_precipitation = $hourly_breakdown_list->childNodes[3]->childNodes[0]->childNodes[3]->childNodes[1]->childNodes[1]->nodeValue . ' chance of rain';
 
     // $four_hours_heading = $hourly_breakdown_list->childNodes[4]->childNodes[0]->childNodes[0]->childNodes[0]->nodeValue;
