@@ -91,7 +91,7 @@ Re-start the server:
 
 Copy the portal files to the web root (/var/www/html/) and change permissions for settings files, cache folder for frogfind,news:  
 
-`sudo su -c 'sudo chown www-data:www-data /var/www/html/settings/vehicle -R; sudo chown www-data:www-data /var/www/html/search/php/library/cache -R; sudo chown www-data:www-data /var/www/html/news/php/library/cache -R; sudo chown www-data:www-data /var/www/html/weather/cache'`
+`sudo su -c 'chown www-data:www-data /var/www/html/settings/vehicle -R; chown www-data:www-data /var/www/html/search/php/library/cache -R; chown www-data:www-data /var/www/html/news/php/library/cache -R; chown www-data:www-data /var/www/html/weather/cache'`
 
 
 
