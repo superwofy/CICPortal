@@ -1,6 +1,4 @@
 <?php
-$lat = isset($_GET['lat']) ? $_GET['lat'] : "0";
-$long = isset($_GET['long']) ? $_GET['long'] : "0";
 header("Content-type: application/xhtml+xml");
 ?>
 <?xml version="1.0" encoding="utf-8"?>
@@ -17,7 +15,7 @@ header("Content-type: application/xhtml+xml");
 <div class="column">
 <a href="./appearance-local.php"><img src="/assets/img/side-left-view-32.png" height="32px" alt=""/>Appearance/Local</a>
 <a href="./view-provisioning.php"><img src="/assets/img/code-32.png" height="32px" alt=""/>View Provisioning</a>
-<a href="<?php echo "./info.php?lat={$lat}&amp;long={$long}"; ?>"><img src="/assets/img/info-2-32.png" height="32px" alt=""/>Portal Info</a>
+<a href="<?php echo "./info.php?lat={$_GET['lat']}&amp;long={$_GET['long']}"; ?>"><img src="/assets/img/info-2-32.png" height="32px" alt=""/>Portal Info</a>
 <a href="" onclick="clear_cookies();"><img src="/assets/img/refresh-2-32.png" height="32px" alt=""/>Reset</a>
 </div>
 <div class="column column2"><img class="setting-icon" src="/assets/img/settings-5-256.png" alt="Settings"/></div>

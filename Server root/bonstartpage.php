@@ -1,9 +1,11 @@
 <?php
 
-$lat = isset($_GET['lat']) ? $_GET['lat'] : "0";
-$long = isset($_GET['long']) ? $_GET['long'] : "0";
 $VIN = isset($_SERVER['HTTP_BMW_VIN']) ? (ctype_alnum($_SERVER['HTTP_BMW_VIN']) ? $_SERVER['HTTP_BMW_VIN'] : "E000000") : "E000000";
 $filename = getcwd().'/settings/vehicle/'.$VIN.'.json';
+
+if (!preg_match('/^' . str_replace('/', "\/", getcwd()) . "\/settings\/vehicle\/[A-Z|0-9]{7}.json$/", $filename))      //attempt to prevent directory traversal with $VIN
+    exit();
+
 $settings = "";
 
 if (file_exists($filename)) $settings = file_get_contents($filename);
@@ -34,11 +36,11 @@ header("Content-type: application/xhtml+xml");
 <body style="margin-top:20px">
 <div>
 <div class="column">
-<a href="<?php echo "/weather/main.php?lat={$lat}&amp;long={$long}"; ?>"><img src="/assets/img/clouds-32.png" height="32px" alt=""/>Weather</a>
+<a href="<?php echo "/weather/main.php?lat={$_GET['lat']}&amp;long={$_GET['long']}"; ?>"><img src="/assets/img/clouds-32.png" height="32px" alt=""/>Weather</a>
 <a href="/news/index.php"><img src="/assets/img/newspaper-32.png" height="32px" alt=""/>News</a>
 <a href="/search/index.php"><img src="/assets/img/search-3-32.png" height="32px" alt=""/>Search</a>
 <a href="/extras/main.php"><img src="/assets/img/window-apps-32.png" height="32px" alt=""/>Extras</a>
-<a href="<?php echo "/settings/main.php?lat={$lat}&amp;long={$long}"; ?>"><img src="/assets/img/settings-5-32.png" height="32px" alt=""/>Settings</a>
+<a href="<?php echo "/settings/main.php?lat={$_GET['lat']}&amp;long={$_GET['long']}"; ?>"><img src="/assets/img/settings-5-32.png" height="32px" alt=""/>Settings</a>
 </div>
 <div class="column column2">
 <p style="color:<?php echo $date_color . '">' . $now->format('d-m-Y'); ?></p>

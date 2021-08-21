@@ -17,6 +17,20 @@ if(isset( $_GET['lang'])) {
     $lang = $_GET["lang"];
 }
 
+
+$VIN = isset($_SERVER['HTTP_BMW_VIN']) ? (ctype_alnum($_SERVER['HTTP_BMW_VIN']) ? $_SERVER['HTTP_BMW_VIN'] : "E000000") : "E000000";
+$filename = $_SERVER["DOCUMENT_ROOT"].'/settings/vehicle/'.$VIN.'.json';
+
+if (!preg_match('/^' . str_replace('/', "\/", $_SERVER["DOCUMENT_ROOT"]) . "\/settings\/vehicle\/[A-Z|0-9]{7}.json$/", $filename))      //attempt to prevent directory traversal with $VIN
+    exit();
+
+if (file_exists($filename)) $settings = file_get_contents($filename);
+else $settings = file_get_contents($_SERVER["DOCUMENT_ROOT"].'/settings/vehicle/'.'E000000.json');
+$settings = json_decode($settings);
+$loc = $settings->country;
+
+
+
 if($section) {
 	$feed_url="https://news.google.com/news/rss/headlines/section/topic/".strtoupper($section)."?ned=".$loc."&hl=".$lang;
 } else {
@@ -74,7 +88,7 @@ function clean_str($str) {
 	<p>
 	<center><a href="/news/index.php?loc=<?php echo $loc ?>">TOP</a> <a href="/news/index.php?section=world&loc=<?php echo strtoupper($loc) ?>">WORLD</a> <a href="/news/index.php?section=nation&loc=<?php echo strtoupper($loc) ?>">NATION</a> <a href="/news/index.php?section=business&loc=<?php echo strtoupper($loc) ?>">BUSINESS</a> <a href="/news/index.php?section=technology&loc=<?php echo strtoupper($loc) ?>">TECHNOLOGY</a> <a href="/news/index.php?section=entertainment&loc=<?php echo strtoupper($loc) ?>">ENTERTAINMENT</a> <a href="/news/index.php?section=sports&loc=<?php echo strtoupper($loc) ?>">SPORTS</a> <a href="/news/index.php?section=science&loc=<?php echo strtoupper($loc) ?>">SCIENCE</a> <a href="/news/index.php?section=health&loc=<?php echo strtoupper($loc) ?>">HEALTH</a><br>
 	<font size="1">-=-=-=-=-=-=-=-=-=-=-=-=-=-</font>
-	<br><?php echo strtoupper($loc) ?> Edition <a href="choose_edition.php">(Change)</a></center>
+	<br><?php echo strtoupper($loc) ?> Edition</center>
 	</p>
 	</small>
 	<?php

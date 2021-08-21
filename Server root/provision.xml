@@ -224,9 +224,9 @@
 </cl>
 <config>
 <dummmaxpartsize>10240</dummmaxpartsize>
-<dummhttpresponsetimeout>35000</dummhttpresponsetimeout>
+<dummhttpresponsetimeout>20000</dummhttpresponsetimeout>
 <dummuseragent>CIC</dummuseragent>
-<dummabortpausetimeout>30000</dummabortpausetimeout>
+<dummabortpausetimeout>20000</dummabortpausetimeout>
 <dummusegzip>true</dummusegzip>
 <dummwaitreestablish>10000</dummwaitreestablish>
 <acmwaitreestablish>10</acmwaitreestablish>

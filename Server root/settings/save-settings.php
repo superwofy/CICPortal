@@ -6,18 +6,29 @@ if (!empty($_POST)) {
 	$saved = true;
 	$settings = new stdClass();
 	$VIN = isset($_SERVER['HTTP_BMW_VIN']) ? (ctype_alnum($_SERVER['HTTP_BMW_VIN']) ? $_SERVER['HTTP_BMW_VIN'] : "E000000") : "E000000";
-	$settings->welcomemsg = isset($_POST['welcomemsg']) ? $_POST['welcomemsg'] : "";
-	$settings->message_color = isset($_POST['welcomemsg-color']) ? $_POST['welcomemsg-color'] : "#80B0DC";
-	$settings->date_color = isset($_POST['date-color']) ? $_POST['date-color'] : "#80B0DC";
-	$settings->logo_setting = isset($_POST['logo-setting']) ? $_POST['logo-setting'] : "1";
-	$settings->country = isset($_POST['country-setting']) ? $_POST['country-setting'] : "uk";
-	$settings->timezone = isset($_POST['timezone']) ? $_POST['timezone'] : "0";
-	$fp = fopen(getcwd().'/vehicle/'.$VIN.'.json', 'w');
-	if ($fp) {
-		$written = fwrite($fp, json_encode($settings));
-		if ($written) {
-			$message = "Settings saved successfully!";
-			fclose($fp);
+	if ($VIN === "E000000") {
+		$message = "Cannot overwrite default file!";
+	} 
+	else {
+		$settings->welcomemsg = isset($_POST['welcomemsg']) ? $_POST['welcomemsg'] : "";
+		$settings->message_color = isset($_POST['welcomemsg-color']) ? $_POST['welcomemsg-color'] : "#80B0DC";
+		$settings->date_color = isset($_POST['date-color']) ? $_POST['date-color'] : "#80B0DC";
+		$settings->logo_setting = isset($_POST['logo-setting']) ? $_POST['logo-setting'] : "1";
+		$settings->country = isset($_POST['country-setting']) ? $_POST['country-setting'] : "UK";
+		$settings->timezone = isset($_POST['timezone']) ? $_POST['timezone'] : "0";
+
+		$filename = getcwd().'/vehicle/'.$VIN.'.json';
+		
+		if (!preg_match('/^' . str_replace('/', "\/", getcwd()) . "\/vehicle\/[A-Z|0-9]{7}.json$/", $filename))      //attempt to prevent directory traversal with $VIN
+		    exit();
+
+		$fp = fopen(getcwd().'/vehicle/'.$VIN.'.json', 'w');
+		if ($fp) {
+			$written = fwrite($fp, json_encode($settings));
+			if ($written) {
+				$message = "Settings saved successfully!";
+				fclose($fp);
+			}
 		}
 	}
 }

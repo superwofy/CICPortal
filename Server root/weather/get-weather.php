@@ -12,28 +12,29 @@ function file_get_contents_curl($url) {
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
     curl_setopt($ch, CURLOPT_URL, $url);
     curl_setopt($ch, CURLOPT_FOLLOWLOCATION, TRUE);  
-    curl_setopt($curl, CURLOPT_USERAGENT, "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:68.0) Gecko/20100101 Firefox/68.0");
-    curl_setopt($curl, CURLOPT_REFERER, 'https://google.com/');
+    curl_setopt($ch, CURLOPT_USERAGENT, "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:68.0) Gecko/20100101 Firefox/68.0");
+    curl_setopt($ch, CURLOPT_REFERER, 'https://google.com/');
     curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
 
     $data = curl_exec($ch);
     $info = curl_getinfo($ch);
 
     if(curl_errno($ch)) {
-        echo ('Curl error: ' . curl_error($ch));
+        die("error");
     }
 
     curl_close($ch);
 
     if ($data === FALSE) {
-        echo ("curl_exec returned FALSE. Info follows:\n" . print_r($info, TRUE));
-        exit();
+        die("error");
     }
 
     return $data;
 }
 
 function request_weather() {
+
+    libxml_use_internal_errors(true);   //avoid filling error log with malformed element warnings
 
     global $lat, $long, $filepath;
 
@@ -51,9 +52,9 @@ function request_weather() {
     $map_phrase = $nodes[0]->nodeValue;
 
     if (!$map_phrase) {
-        $fp = fopen($filepath, 'w');    //"cache" the failure
+        $fp = fopen($filepath, 'w');    //"cache" the empty data
         fclose($fp);
-        die("failed");
+        die("unavailable");
     }
 
     $nodes = $finder->query("//*[contains(@data-testid, 'SunriseValue')]");
@@ -193,16 +194,30 @@ function request_weather() {
 }
 
 
-$lat = $_GET['lat'];
-$long = $_GET['long'];
-$VIN = isset($_SERVER['HTTP_BMW_VIN']) ? (ctype_alnum($_SERVER['HTTP_BMW_VIN']) ? $_SERVER['HTTP_BMW_VIN'] : "E000000") : "E000000";
+$lat = isset($_GET['lat']) ? (is_numeric($_GET['lat']) ? round(intval($_GET['lat']) / 11930464.71, 2) : "0") : "0";            //Decode compressed GPS co-ordinates.
+$long = isset($_GET['long']) ? (is_numeric($_GET['long']) ? round(intval($_GET['long']) / 11930464.71, 2) : "0") : "0";
+
+if ($lat === "0" && $long === "0") {
+    die("error");
+}
+
+//TESTING
+// $lat = '52.52';
+// $long = '13.40';
+
+$VIN = isset($_GET['VIN']) ? (ctype_alnum($_GET['VIN']) ? $_GET['VIN'] : "E000000") : "E000000";
 $filepath = getcwd().'/cache/'.$VIN.'.json';
 
+if (!preg_match('/^' . str_replace('/', "\/", getcwd()) . "\/cache\/[A-Z|0-9]{7}.json$/", $filepath)) {  //attempt to prevent directory traversal with $VIN
+    exit("error");
+}      
+    
+
 if (file_exists($filepath)) {
-    if (time()-filemtime($filepath) < 600) {    //file newer than 8 minutes
+    if (time()-filemtime($filepath) < 600) {    //file newer than 10 minutes
         clearstatcache();
         if (filesize($filepath) == 0) {
-            die("failed");
+            die("unavailable");
         }
         echo file_get_contents($filepath);
     } else {

@@ -212,6 +212,11 @@ To load manually with Tool32:
 
 
 
+## Security
+
+Some provisions were made to allow multiple cars to use a single server. However, access control and strict VIN validation are required for a 'production' solution.
+Directory traversal is now accounted for.
+
 
 ## Notes/gotchas
 

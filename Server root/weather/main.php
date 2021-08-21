@@ -1,26 +1,35 @@
 <?php
 
-$lat = $_GET['lat'];
-$long = $_GET['long'];
-
-//TESTING - this is the format sent by the CIC
-// $lat = '525200000';
-// $long = '134000000';
-
-$lat = str_split(str_split($lat, 4)[0], 2);
-$lat = $lat[0] . '.' . $lat[1];
-
-$long = str_split(str_split($long, 4)[0], 2);
-$long = $long[0] . '.' . $long[1];
-
+$lat = isset($_GET['lat']) ? (is_numeric($_GET['lat']) ? $_GET['lat'] : "0") : "0";
+$long = isset($_GET['long']) ? (is_numeric($_GET['long']) ? $_GET['long'] : "0") : "0";
 $VIN = isset($_SERVER['HTTP_BMW_VIN']) ? (ctype_alnum($_SERVER['HTTP_BMW_VIN']) ? $_SERVER['HTTP_BMW_VIN'] : "E000000") : "E000000";
 
-$weather_data = file_get_contents("http://127.0.0.1/weather/get-weather.php?lat={$lat}&long={$long}&VIN={$VIN}");
+$weather_data = "unavailable";
+
+if ($lat === "0" && $long === "0") {
+	$weather_data = "error";
+} else {
+	$weather_data = file_get_contents("http://127.0.0.1/weather/get-weather.php?lat={$lat}&long={$long}&VIN={$VIN}");
+}
 
 header("Content-type: application/xhtml+xml");
 
 ?>
-<?php if ($weather_data == "failed") : ?>
+<?php if ($weather_data == "unavailable") : ?>
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<title>CIC Portal >> Weather Unavailable</title>
+<?php if (isset($_COOKIE['development'])) echo '<link href="/assets/css/default_bon.css" type="text/css" rel="stylesheet"/>'; ?>
+</head>
+<body>
+<p style="text-align:center;margin-top:150px">Weather data unavailable for this location!</p>
+</body>
+</html>
+
+<?php elseif ($weather_data == "error") : ?>
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -30,10 +39,9 @@ header("Content-type: application/xhtml+xml");
 <?php if (isset($_COOKIE['development'])) echo '<link href="/assets/css/default_bon.css" type="text/css" rel="stylesheet"/>'; ?>
 </head>
 <body>
-<p style="text-align:center;margin-top:150px">Weather data unavailable for this location!</p>
-<p style="text-align:center"><?php echo $lat . ', ' . $long; ?></p>
+<p style="text-align:center;margin-top:150px">Failed to retrieve weather data!</p>
 </body>
-</html> 
+</html>
 
 <?php else : ?>
 <?php $weather_data = json_decode($weather_data); ?>

@@ -1,6 +1,6 @@
 <?php
-$lat = isset($_GET['lat']) ? $_GET['lat'] : "0";
-$long = isset($_GET['long']) ? $_GET['long'] : "0";
+$lat = isset($_GET['lat']) ? (is_numeric($_GET['lat']) ? round(intval($_GET['lat']) / 11930464.71, 2) : "Incorrect lat") : "No lat";            //Decode compressed GPS co-ordinates.
+$long = isset($_GET['long']) ? (is_numeric($_GET['long']) ? round(intval($_GET['long']) / 11930464.71, 2) : "Incorrect long") : "No long";
 $VIN = isset($_SERVER['HTTP_BMW_VIN']) ? (ctype_alnum($_SERVER['HTTP_BMW_VIN']) ? $_SERVER['HTTP_BMW_VIN'] : "Not provided") : "Not provided";
 header("Content-type: application/xhtml+xml");
 ?>
