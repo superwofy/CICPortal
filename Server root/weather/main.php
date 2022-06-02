@@ -13,7 +13,7 @@ if ($lat === "0" && $long === "0") {
 }
 
 header("Content-type: application/xhtml+xml");
-
+ob_start("ob_gzhandler");
 ?>
 <?php if ($weather_data == "unavailable") : ?>
 <?xml version="1.0" encoding="utf-8"?>

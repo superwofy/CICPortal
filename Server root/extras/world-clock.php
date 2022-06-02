@@ -22,7 +22,7 @@ else $settings = file_get_contents($_SERVER["DOCUMENT_ROOT"].'/settings/vehicle/
 $settings = json_decode($settings);
 $u_tz = $settings->timezone;
 header("Content-type: application/xhtml+xml");
-
+ob_start("ob_gzhandler");
 ?>
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"

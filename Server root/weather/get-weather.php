@@ -48,7 +48,7 @@ function request_weather() {
 
     /* MISC VALUES */
 
-    $nodes = $finder->query("//*[contains(@data-testid, 'TodayMapWeatherPhrase')]");
+    $nodes = $finder->query("//*[starts-with(@class, 'InsightNotification--text--')]");
     $map_phrase = $nodes[0]->nodeValue;
 
     if (!$map_phrase) {
@@ -57,11 +57,9 @@ function request_weather() {
         die("unavailable");
     }
 
-    $nodes = $finder->query("//*[contains(@data-testid, 'SunriseValue')]");
-    $sunrise_time = $nodes[0]->childNodes[1]->nodeValue;
-
-    $nodes = $finder->query("//*[contains(@data-testid, 'SunsetValue')]");
-    $sunset_time = $nodes[0]->childNodes[1]->nodeValue;
+    $nodes = $finder->query("//*[starts-with(@class, 'SunriseSunset--dateValue--')]");
+    $sunrise_time = $nodes[0]->nodeValue;
+    $sunset_time = $nodes[1]->nodeValue;
 
     $nodes = $finder->query("//*[contains(@data-testid, 'AirQualitySeverity')]");
     $air_quality = $nodes[0]->nodeValue;
