@@ -313,20 +313,23 @@ OR
 - Expose port 80 and connect directly to the webserver.
 
 
+
 Phones tested:
 
-LEX720 with Lineage 15 - basicaly unusable
-iPhone 4S - working
-Galaxy A5 (2017) - working
+- LEX720 with Lineage 15 - basicaly unusable
+- iPhone 4S - working
+- Galaxy A5 (2017) - working
 
 
 
 Provisioning XML parameters:
 
+```
 <bon>
 <csdtimeout>0</csdtimeout>
 <gprstimeout>120</gprstimeout>
 </bon>
+```
 
 - bon - BWM ONLINE
 - csdtimeout - N/A, set to 0.
