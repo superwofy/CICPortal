@@ -57,7 +57,7 @@ foreach ($colors as $key => $value){
 ?>
 </select>
 </div>
-<p><label>Date color</label></p>
+<p><label>Home date color</label></p>
 <div>
 <select name="date-color">
 <?php

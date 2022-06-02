@@ -322,6 +322,7 @@ Phones tested:
 
 
 
+
 Provisioning XML parameters:
 
 ```
@@ -330,6 +331,7 @@ Provisioning XML parameters:
 <gprstimeout>120</gprstimeout>
 </bon>
 ```
+
 
 - bon - BWM ONLINE
 - csdtimeout - N/A, set to 0.

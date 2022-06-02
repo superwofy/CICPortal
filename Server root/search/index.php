@@ -54,9 +54,9 @@ function clean_str($str) {
     return $str;
 }
 
+ob_start("ob_gzhandler");
 ?>
-<!DOCTYPE HTML>
-
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 2.0//EN">
 <html>
 <head>
 <title>CIC Portal > FrogFind!</title>

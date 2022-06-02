@@ -1,10 +1,5 @@
 <?php
     $url = "";
-    $loc = "US";
-
-    if( isset( $_GET['loc'] ) ) {
-        $loc = strtoupper($_GET["loc"]);
-    }
     
     //get the image url
     if (isset( $_GET['i'] ) ) {
@@ -25,6 +20,7 @@
         echo("Image failed :(");
         exit();
     }
+ob_start("ob_gzhandler");
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 2.0//EN">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -33,9 +29,8 @@
      <title>CIC Portal - FrogFind! - Image Viewer</title>
  </head>
  <body">
-    <p><small><b>Viewing image:</b> <?php echo $url ?></small></p>
-    <img src="./image_compressed.php?i=<?php echo $url; ?>">
+    <p style="color:white"><small><b>Viewing image:</b> <?php echo $url ?></small></p>
+    <center><img src="/assets/php/image_compressed.php?i=<?php echo $url; ?>"></center>
     <br><br>
-    <small><a href="<?php echo $_SERVER['HTTP_REFERER'] . '?loc=' . strtoupper($loc) ?>">< Back to article</a></small>
  </body>
  </html>
