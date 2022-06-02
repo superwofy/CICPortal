@@ -7,6 +7,7 @@ If your telematics subscription is still active you can still access the origina
 
 Modifications and pull requests highly encouraged!
 
+![Home Image](Images/main.jpg "Home")
 
 ## Scope
 
@@ -260,7 +261,7 @@ Replace \*your IP\* with the IP address of the proxy.
 
 To load manually with Tool32:
 
-1. Copy provisioning.xml to root of the C: drive.
+1. Copy provisioning.xml (from folder 'Server root') to the root of the C: drive.
 
 2. Start Tool32 and load CMEDIAR.PRG.
 
@@ -307,11 +308,8 @@ Testing with a computer:
 - Adjust the proxy IP from Network Settings -> Manual Proxy Configuration
 - Go to about:config and set network.proxy.allow_hijacking_localhost to true
 - Visit http://127.0.0.1/bonstartpage.php?development and refresh the page
-
 OR
-
-- Expose port 80 and connect directly to the webserver.
-
+- Open port 80 and connect directly to the webserver (should be restricted to your IP)
 
 
 Phones tested:
@@ -319,8 +317,6 @@ Phones tested:
 - LEX720 with Lineage 15 - basicaly unusable
 - iPhone 4S - working
 - Galaxy A5 (2017) - working
-
-
 
 
 Provisioning XML parameters:
@@ -331,7 +327,6 @@ Provisioning XML parameters:
 <gprstimeout>120</gprstimeout>
 </bon>
 ```
-
 
 - bon - BWM ONLINE
 - csdtimeout - N/A, set to 0.
