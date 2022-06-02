@@ -18,7 +18,7 @@ ob_start("ob_gzhandler");
 echo "<h1>VIN: {$VIN}</h1>";
 echo "<h1>GPS-Location: {$lat}, {$long}</h1>";
 echo "<h1>UA-HTTP: {$_SERVER['HTTP_USER_AGENT']}</h1>";
-echo "<h1>Protocol: {$_SERVER['SERVER_PROTOCOL']}</h1>";
+echo "<h1>Protocol: {$_SERVER['SERVER_PROTOCOL']} {$_SERVER['HTTP_ACCEPT_ENCODING']}</h1>";
 //echo "<h1>Server: {$_SERVER['SERVER_SOFTWARE']}</h1>";
 echo "<h1>Portal updated: ".date("F d Y H:i:s", filemtime("../bonstartpage.php"))."</h1>";
 ?>

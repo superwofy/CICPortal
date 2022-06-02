@@ -65,11 +65,10 @@ function clean_str($str) {
 
     return $str;
 }
- 
+ob_start("ob_gzhandler");
 ?>
-<!DOCTYPE HTML>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 2.0//EN">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-
 <html>
 <head>
 <title>CIC Portal > 68k.news</title>
@@ -97,22 +96,19 @@ function clean_str($str) {
 	*/
 	foreach ($feed->get_items() as $item):
 	?>
- 
-			<h3><font size="5"><a href="<?php echo 'article.php?loc=' . $loc . '&a=' . $item->get_permalink(); ?>"><?php echo clean_str($item->get_title()); ?></a></font></h3>
 			<p><font size="4"><?php 
             $subheadlines = clean_str($item->get_description());
             $remove_google_link = explode("<li><strong>", $subheadlines);
             $no_blank = str_replace('target="_blank"', "", $remove_google_link[0]) . "</li></ol></font></p>"; 
-            $cleaned_links = str_replace('<a href="', '<a href="article.php?loc=' . $loc . '&a=', $no_blank);
+            $cleaned_links = str_replace('<a href="', '<a href="article.php?a=', $no_blank);
 			$cleaned_links = strip_tags($cleaned_links, '<a><ol><ul><li><br><p><small><font><b><strong><i><em><blockquote><h1><h2><h3><h4><h5><h6>');
     		$cleaned_links = str_replace( 'strong>', 'b>', $cleaned_links); //change <strong> to <b>
     		$cleaned_links = str_replace( 'em>', 'i>', $cleaned_links); //change <em> to <i>
 			$cleaned_links = str_replace( "View Full Coverage on Google News", "", $cleaned_links);
             echo $cleaned_links;
             ?></p>
-			<p><small>Posted on <?php echo $item->get_date('j F Y | g:i a'); ?></small></p>
- 
+			<p><small>Posted on <?php echo $item->get_date('j F Y \a\t g:i a'); ?></small></p>
+			<hr>
 	<?php endforeach; ?>
-	<p><center><small>v1.0 Powered by Mozilla Readability (Andres Rey PHP Port) and SimplePie</small><center></p>
 </body>
 </html>

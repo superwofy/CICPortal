@@ -4,11 +4,6 @@ require_once('vendor/autoload.php');
 $article_url = "";
 $article_html = "";
 $error_text = "";
-$loc = "US";
-
-if( isset( $_GET['loc'] ) ) {
-    $loc = strtoupper($_GET["loc"]);
-}
 
 if( isset( $_GET['a'] ) ) {
     $article_url = $_GET["a"];
@@ -58,6 +53,7 @@ function clean_str($str) {
 
     return $str;
 }
+ob_start("ob_gzhandler");
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 2.0//EN">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -65,18 +61,18 @@ function clean_str($str) {
  <html>
  <head>
      <title><?php echo $readability->getTitle();?></title>
+     <style>p{color:white}h1{margin-bottom:20px}</style>
  </head>
  <body>
-    <small><a href="/index.php?loc=<?php echo $loc ?>">< Back to <font color="#9400d3">68k.news</font> <?php echo $loc ?> front page</a></small>
     <h1><?php echo clean_str($readability->getTitle());?></h1>
-    <p><small><a href="<?php echo $article_url ?>" target="_blank">Original source</a> (on modern site) <?php
+    <p><small><?php
         $img_num = 0;
-        $imgline_html = "| Article images:";
+        $imgline_html = "Article images:";
         foreach ($readability->getImages() as $image_url):
             //we can only do png and jpg
             if (strpos($image_url, ".jpg") || strpos($image_url, ".jpeg") || strpos($image_url, ".png") === true) {
                 $img_num++;
-                $imgline_html .= " <a href='image.php?loc=" . $loc . "&i=" . $image_url . "'>[$img_num]</a> ";
+                $imgline_html .= " <a href='image.php?i=" . $image_url . "'>[$img_num]</a> ";
             }
         endforeach;
         if($img_num>0) {
@@ -85,6 +81,5 @@ function clean_str($str) {
     ?></small></p>
     <?php if($error_text) { echo "<p><font color='red'>" . $error_text . "</font></p>"; } ?>
     <p><font size="4"><?php echo $readable_article;?></font></p>
-    <small><a href="/index.php?loc=<?php echo $loc ?>">< Back to <font color="#9400d3">68k.news</font> <?php echo $loc ?> front page</a></small>
  </body>
  </html>
