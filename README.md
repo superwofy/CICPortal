@@ -85,6 +85,65 @@ fastcgi.server += ( ".php" =>
 )
 ```
 
+Main lighttpd configuration:  
+`sudo vi /etc/lighttpd/lighttpd.conf`
+
+
+```
+server.modules = (
+  "mod_expire",
+  "mod_setenv",
+  "mod_indexfile",
+  "mod_access",
+  "mod_alias",
+  "mod_redirect",
+  "mod_compress",
+  "mod_dirlisting",
+  "mod_staticfile",
+)
+
+expire.url = ( "/assets/" => "access plus 1 months" )
+
+
+server.document-root        = "/var/www/html"
+server.upload-dirs          = ( "/var/cache/lighttpd/uploads" )
+server.errorlog             = "/var/log/lighttpd/error.log"
+server.pid-file             = "/var/run/lighttpd.pid"
+server.username             = "www-data"
+server.groupname            = "www-data"
+server.port                 = 80
+server.tag = 		    ""
+
+# strict parsing and normalization of URL for consistency and security
+# https://redmine.lighttpd.net/projects/lighttpd/wiki/Server_http-parseoptsDetails
+# (might need to explicitly set "url-path-2f-decode" = "disable"
+#  if a specific application is encoding URLs inside url-path)
+server.http-parseopts = (
+  "header-strict"           => "enable",# default
+  "host-strict"             => "enable",# default
+  "host-normalize"          => "enable",# default
+  "url-normalize-unreserved"=> "enable",# recommended highly
+  "url-normalize-required"  => "enable",# recommended
+  "url-ctrls-reject"        => "enable",# recommended
+  "url-path-2f-decode"      => "enable",# recommended highly (unless breaks app)
+  "url-path-dotseg-remove"  => "enable",# recommended highly (unless breaks app)
+)
+
+index-file.names            = ( "index.php", "index.html" )
+url.access-deny             = ( "~", ".inc" )
+static-file.exclude-extensions = ( ".php", ".pl", ".fcgi" )
+
+compress.cache-dir          = "/var/cache/lighttpd/compress/"
+compress.filetype           = ( "application/javascript", "text/css", "text/html", "text/plain", "font/ttf", "application/xhtml+xml", "application/xml" )
+
+# default listening port for IPv6 falls back to the IPv4 port
+include_shell "/usr/share/lighttpd/use-ipv6.pl " + server.port
+include_shell "/usr/share/lighttpd/create-mime.conf.pl"
+include "/etc/lighttpd/conf-enabled/*.conf"
+
+```
+
+
 Re-start the server:  
 `sudo service lighttpd force-reload`
 
@@ -220,7 +279,7 @@ Directory traversal is now accounted for.
 
 ## Notes/gotchas
 
-* If provisioning works successfully via tethering but BMW Online/Live does not (gets stuck on 'Starting'), run Tool32 job STEUERN_RESET_TO_BASIC_STATE with argument 0x00000000, and re-pair the phone.
+* If provisioning works successfully via tethering but BMW Online/Live does not (gets stuck on 'Starting'), run Tool32 job STEUERN_RESET_TO_BASIC_STATE with argument 0x00000000, STEUERGERAETE_RESET, and re-pair the phone.
 * The proxy defined in the provisioning XML must be an IPv4 instead of a domain name. Domain names cannot be resolved at this stage.
 * The server address can be defined as both a domain name or IPv4. Setting to an IP should save on a DNS query.
 * Setting addresses such as BON and provisioning to 127.0.0.1 speeds up access since Squid won't have to make a DNS query.
@@ -240,3 +299,35 @@ Browser engine specs [NetFront 3.4]:
 - HTTP1.1
 - SSL2.0/3.0,TLS1.0
 - Cookies
+
+
+Testing with a computer:
+
+- Use firefox
+- Adjust the proxy IP from Network Settings -> Manual Proxy Configuration
+- Go to about:config and set network.proxy.allow_hijacking_localhost to true
+- Visit http://127.0.0.1/bonstartpage.php?development and refresh the page
+
+OR
+
+- Expose port 80 and connect directly to the webserver.
+
+
+Phones tested:
+
+LEX720 with Lineage 15 - basicaly unusable
+iPhone 4S - working
+Galaxy A5 (2017) - working
+
+
+
+Provisioning XML parameters:
+
+<bon>
+<csdtimeout>0</csdtimeout>
+<gprstimeout>120</gprstimeout>
+</bon>
+
+- bon - BWM ONLINE
+- csdtimeout - N/A, set to 0.
+- gprstimeout - time in seconds after a GPRS connection is finished that it will stay awake for the next request. Higher values improve experience but drain phone battery.

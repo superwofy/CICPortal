@@ -40,8 +40,8 @@
 <proxypwd>b2v_standard</proxypwd>
 </http>
 <dumm>
-<csdtimeout>300</csdtimeout>
-<gprstimeout>3600</gprstimeout>
+<csdtimeout>0</csdtimeout>
+<gprstimeout>0</gprstimeout>
 <proxycfgurl/>
 </dumm>
 <prov>
@@ -51,8 +51,8 @@
 <url>http://127.0.0.1/bonstartpage.php</url>
 <disable>00</disable>
 <vmax>FF</vmax>
-<csdtimeout>300</csdtimeout>
-<gprstimeout>600</gprstimeout>
+<csdtimeout>0</csdtimeout>
+<gprstimeout>120</gprstimeout>
 </bon>
 </portal>
 </as>

@@ -21,11 +21,12 @@ $timezone = $settings->timezone;
 $country = $settings->country;
 
 $colors = array("Default Color" => "#80B0DC", "White" => "white", "Red" => "red", "Green" => "green", "Orange" => "orange", "Pink" => "pink");
-$images = array("Default Logo" => "1", "Vintage Logo" => "2");
+$images = array("Black and White" => "0", "Blue Transparent" => "1", "Vintage Logo (slower)" => "2", "///M Logo" => "3");
 $countries = array("UK" => "UK", "USA" => "US", "Ireland" => "IE", "Germany" => "DE", "France" => "FR");
 $timezones = array("+8" => "8", "+7" => "7", "+6" => "6", "+5" => "5", "+4" => "4", "+3" => "3", "+2" => "2", "+1" => "1", "0" => "0", "-1" => "-1", "-2" => "-2", "-3" => "-3", "-4" => "-4", "-5" => "-5", "-6" => "-6", "-7" => "-7", "-8" => "-8");
 
 header("Content-type: application/xhtml+xml");
+ob_start("ob_gzhandler");
 ?>
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
@@ -71,7 +72,7 @@ foreach ($colors as $key => $value){
 ?>
 </select>
 </div>
-<p><label>Right sidebar logo</label></p>
+<p><label>Home sidebar logo</label></p>
 <div>
 <select name="logo-setting">
 <?php

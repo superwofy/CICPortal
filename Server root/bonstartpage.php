@@ -23,6 +23,7 @@ $now = new DateTime();
 if (isset($_GET['development'])) {setcookie("development", 1);}
 
 header("Content-type: application/xhtml+xml");
+ob_start("ob_gzhandler");
 ?>
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
@@ -44,7 +45,7 @@ header("Content-type: application/xhtml+xml");
 </div>
 <div class="column column2">
 <p style="color:<?php echo $date_color . '">' . $now->format('d-m-Y'); ?></p>
-<img style="margin:10px 0 0 0" src="/assets/img/widget-images/<?php echo $logo_setting; ?>.png" alt="Logo"/>
+<img style="margin:10px 0 0 0" src="/assets/img/widget-images/<?php echo $logo_setting; ?>.png" alt=""/>
 <?php if (!empty($welcomemsg)) echo "<h1 style=\"color:{$message_color}\">{$welcomemsg}</h1>"; ?>
 </div>
 </div> 

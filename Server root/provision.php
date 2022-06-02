@@ -5,6 +5,7 @@
 // setcookie("USERAUTH", "", time()-3600);
 // setcookie("JSESSIONID", "", time()-3600);
 header('Content-Type: application/xml');
+ob_start("ob_gzhandler");
 
 if (file_exists('provision.xml')) {
 	$bmwprov = simplexml_load_file('provision.xml');
