@@ -70,10 +70,10 @@ ob_start("ob_gzhandler");
 <td class="temp nobr"><?php echo $weather_data->today_overnight_temperature; ?></td>
 </tr>
 <tr>
-<td><img src="/assets/img/weather-64/<?php echo str_replace(' ', '-', $weather_data->today_morning_condition); ?>.png" alt=""/></td>
-<td><img src="/assets/img/weather-64/<?php echo str_replace(' ', '-', $weather_data->today_afternoon_condition); ?>.png"  alt=""/></td>
-<td><img src="/assets/img/weather-64/<?php echo str_replace(' ', '-', $weather_data->today_evening_condition); ?>.png"  alt=""/></td>
-<td class="nobr"><img src="/assets/img/weather-64/<?php echo str_replace(" ", '-', $weather_data->today_overnight_condition); ?>.png" alt=""/></td>
+<td><img src="/assets/img/weather-col/<?php echo str_replace(' ', '-', $weather_data->today_morning_condition); ?>.png" alt=""/></td>
+<td><img src="/assets/img/weather-col/<?php echo str_replace(' ', '-', $weather_data->today_afternoon_condition); ?>.png"  alt=""/></td>
+<td><img src="/assets/img/weather-col/<?php echo str_replace(' ', '-', $weather_data->today_evening_condition); ?>.png"  alt=""/></td>
+<td class="nobr"><img src="/assets/img/weather-col/<?php echo str_replace(" ", '-', $weather_data->today_overnight_condition); ?>.png" alt=""/></td>
 </tr>
 <tr>
 <td><?php echo $weather_data->today_morning_condition; ?></td>
@@ -103,10 +103,10 @@ ob_start("ob_gzhandler");
 <td class="temp nobr"><?php echo $weather_data->three_hours_temperature; ?></td>
 </tr>
 <tr>
-<td><img src="/assets/img/weather-64/<?php echo str_replace(' ', '-', $weather_data->now_condition); ?>.png" alt=""/></td>
-<td><img src="/assets/img/weather-64/<?php echo str_replace(' ', '-', $weather_data->one_hour_condition); ?>.png" alt=""/></td>
-<td><img src="/assets/img/weather-64/<?php echo str_replace(' ', '-', $weather_data->two_hours_condition); ?>.png" alt=""/></td>
-<td class="nobr"><img src="/assets/img/weather-64/<?php echo str_replace(' ', '-', $weather_data->three_hours_condition); ?>.png" alt=""/></td>
+<td><img src="/assets/img/weather-col/<?php echo str_replace(' ', '-', $weather_data->now_condition); ?>.png" alt=""/></td>
+<td><img src="/assets/img/weather-col/<?php echo str_replace(' ', '-', $weather_data->one_hour_condition); ?>.png" alt=""/></td>
+<td><img src="/assets/img/weather-col/<?php echo str_replace(' ', '-', $weather_data->two_hours_condition); ?>.png" alt=""/></td>
+<td class="nobr"><img src="/assets/img/weather-col/<?php echo str_replace(' ', '-', $weather_data->three_hours_condition); ?>.png" alt=""/></td>
 </tr>
 <tr>
 <td><?php echo $weather_data->now_condition; ?></td>
@@ -123,7 +123,7 @@ ob_start("ob_gzhandler");
 </table>
 <div class="info">
 <h1>Extra</h1>
-<p><?php echo $weather_data->map_phrase; ?></p>
+<?php if($weather_data->map_phrase) echo '<p>' . $weather_data->map_phrase . '</p>'; ?>
 <p><?php echo 'The sun rises at ' . $weather_data->sunrise_time . ' and sets at ' . $weather_data->sunset_time . ' today.'; ?></p>
 <p><?php echo $weather_data->air_quality; ?></p>
 </div>

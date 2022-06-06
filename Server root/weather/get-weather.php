@@ -48,18 +48,18 @@ function request_weather() {
 
     /* MISC VALUES */
 
-    $nodes = $finder->query("//*[starts-with(@class, 'InsightNotification--text--')]");
-    $map_phrase = $nodes[0]->nodeValue;
+    $nodes = $finder->query("//*[starts-with(@class, 'SunriseSunset--dateValue--')]");
+    $sunrise_time = $nodes[0]->nodeValue;
+    $sunset_time = $nodes[1]->nodeValue;
 
-    if (!$map_phrase) {
+    if (!$sunrise_time) {
         $fp = fopen($filepath, 'w');    //"cache" the empty data
         fclose($fp);
         die("unavailable");
     }
 
-    $nodes = $finder->query("//*[starts-with(@class, 'SunriseSunset--dateValue--')]");
-    $sunrise_time = $nodes[0]->nodeValue;
-    $sunset_time = $nodes[1]->nodeValue;
+    $nodes = $finder->query("//*[starts-with(@class, 'InsightNotification--text--')]");
+    $map_phrase = $nodes[0]->nodeValue;
 
     $nodes = $finder->query("//*[contains(@data-testid, 'AirQualitySeverity')]");
     $air_quality = $nodes[0]->nodeValue;
@@ -198,10 +198,6 @@ $long = isset($_GET['long']) ? (is_numeric($_GET['long']) ? round(intval($_GET['
 if ($lat === "0" && $long === "0") {
     die("error");
 }
-
-//TESTING
-// $lat = '52.52';
-// $long = '13.40';
 
 $VIN = isset($_GET['VIN']) ? (ctype_alnum($_GET['VIN']) ? $_GET['VIN'] : "E000000") : "E000000";
 $filepath = getcwd().'/cache/'.$VIN.'.json';
