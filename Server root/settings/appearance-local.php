@@ -42,7 +42,7 @@ ob_start("ob_gzhandler");
 <form action="./save-settings.php" method="post">
 <p><label for="welcomemsg">Welcome Message</label></p>
 <div><input type="text" id="welcomemsg" name="welcomemsg" value="<?php echo $welcomemsg; ?>"/></div>
-<p><label>Welcome Message color</label></p>
+<p><label>Welcome Message Color</label></p>
 <div>
 <select name="welcomemsg-color" id="welcomemsg-color">
 <?php
@@ -57,7 +57,7 @@ foreach ($colors as $key => $value){
 ?>
 </select>
 </div>
-<p><label>Home date color</label></p>
+<p><label>Home Date Color</label></p>
 <div>
 <select name="date-color">
 <?php
@@ -72,7 +72,7 @@ foreach ($colors as $key => $value){
 ?>
 </select>
 </div>
-<p><label>Home sidebar logo</label></p>
+<p><label>Home Sidebar Logo</label></p>
 <div>
 <select name="logo-setting">
 <?php
@@ -87,7 +87,7 @@ foreach ($images as $key => $value){
 ?>
 </select>
 </div>
-<p><label>Country</label></p>
+<p><label>News Country</label></p>
 <div>
 <select name="country-setting">
 <?php
@@ -102,7 +102,7 @@ foreach ($countries as $key => $value){
 ?>
 </select>
 </div>
-<p><label>Timezone (GMT)</label></p>
+<p><label>Clock Timezone (UTC)</label></p>
 <div>
 <select name="timezone">
 <?php

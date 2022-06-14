@@ -54,7 +54,7 @@ ob_start("ob_gzhandler");
   if ($weather_data != "unavailable" && $weather_data != "error") {
     $weather_data = json_decode($weather_data);
     echo '<div style="margin-top:-10px" class="column column2">';
-    echo '<p style="font-size:32px;display:inline-block;color:{$message_color}">' . $weather_data->now_temperature . ' ' . $weather_data->now_condition . '</p>';
+    echo '<p style="font-size:32px;display:inline-block;color:' . $message_color . '">' . $weather_data->now_temperature . ' ' . $weather_data->now_condition . '</p>';
     echo '<img style="display:inline-block;margin:0 0 14px 10px" height="32px" src="/assets/img/weather-64/' . str_replace(' ', '-', $weather_data->now_condition) . '.png" alt=""/>';
     echo '</div>';
   }

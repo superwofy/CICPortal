@@ -314,7 +314,7 @@ OR
 
 Phones tested:
 
-- LEX720 with Lineage 15 - basicaly unusable
+- LEX720 with Lineage 15 - basicaly unusable, with Lineage 18 - unreliable
 - iPhone 4S - working
 - Galaxy A5 (2017) - working
 
