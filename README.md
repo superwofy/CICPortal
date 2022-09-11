@@ -63,7 +63,7 @@ For cloud, a small Lightsail instance is $3.50/month.
 You will need an http web-server (Apache, Lighttpd, NGINX, etc.) and PHP.
 
 
-The instructions below apply for a Debian instance and PHP7.3.
+The instructions below apply for a Debian 11 instance and PHP7.4.
 
 
 Install packages:  
@@ -71,7 +71,7 @@ Install packages:
 
 
 Configure server:  
-`ln -s /var/www/html/ web-root && sudo su -c 'chown admin:admin /var/www/ -R && echo "cgi.fix_pathinfo=1" >> /etc/php/7.3/fpm/php.ini && ln -s /etc/lighttpd/conf-available/10-fastcgi.conf /etc/lighttpd/conf-enabled/ && ln -s /etc/lighttpd/conf-available/15-fastcgi-php.conf /etc/lighttpd/conf-enabled/' `
+`ln -s /var/www/html/ web-root && sudo su -c 'chown admin:admin /var/www/ -R && echo "cgi.fix_pathinfo=1" >> /etc/php/7.4/fpm/php.ini && ln -s /etc/lighttpd/conf-available/10-fastcgi.conf /etc/lighttpd/conf-enabled/ && ln -s /etc/lighttpd/conf-available/15-fastcgi-php.conf /etc/lighttpd/conf-enabled/' `
 
 
 Modify configuration:  
@@ -80,7 +80,7 @@ Modify configuration:
 ```
 fastcgi.server += ( ".php" => 
 	((
-		"socket" => "/run/php/php7.3-fpm.sock",
+		"socket" => "/run/php/php7.4-fpm.sock",
 		"broken-scriptfilename" => "enable"
 	))
 )
@@ -98,7 +98,7 @@ server.modules = (
   "mod_access",
   "mod_alias",
   "mod_redirect",
-  "mod_compress",
+  "mod_deflate",
   "mod_dirlisting",
   "mod_staticfile",
 )
@@ -134,8 +134,8 @@ index-file.names            = ( "index.php", "index.html" )
 url.access-deny             = ( "~", ".inc" )
 static-file.exclude-extensions = ( ".php", ".pl", ".fcgi" )
 
-compress.cache-dir          = "/var/cache/lighttpd/compress/"
-compress.filetype           = ( "application/javascript", "text/css", "text/html", "text/plain", "font/ttf", "application/xhtml+xml", "application/xml" )
+deflate.cache-dir           = "/var/cache/lighttpd/compress/"
+deflate.mimetypes           = ( "application/javascript", "text/css", "text/html", "text/plain", "font/ttf", "application/xhtml+xml", "application/xml" )
 
 # default listening port for IPv6 falls back to the IPv4 port
 include_shell "/usr/share/lighttpd/use-ipv6.pl " + server.port
@@ -145,8 +145,8 @@ include "/etc/lighttpd/conf-enabled/*.conf"
 ```
 
 
-Re-start the server:  
-`sudo service lighttpd force-reload`
+Re-start the web server:  
+`sudo systemctl restart lighttpd.service`
 
 
 Copy the portal files to the web root (/var/www/html/) and change permissions for settings files, cache folder for frogfind,news:  
