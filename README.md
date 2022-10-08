@@ -71,7 +71,7 @@ Install packages:
 
 
 Configure server:  
-`ln -s /var/www/html/ web-root && sudo su -c 'chown admin:admin /var/www/ -R && echo "cgi.fix_pathinfo=1" >> /etc/php/7.4/fpm/php.ini && ln -s /etc/lighttpd/conf-available/10-fastcgi.conf /etc/lighttpd/conf-enabled/ && ln -s /etc/lighttpd/conf-available/15-fastcgi-php.conf /etc/lighttpd/conf-enabled/' `
+`ln -s /var/www/html/ web-root && sudo su -c 'chown admin:admin /var/www/ -R && echo "cgi.fix_pathinfo=1" >> /etc/php/7.4/fpm/php.ini && ln -s /etc/lighttpd/conf-available/10-fastcgi.conf /etc/lighttpd/conf-enabled/ && ln -s /etc/lighttpd/conf-available/15-fastcgi-php.conf /etc/lighttpd/conf-enabled/ && ln -s /etc/lighttpd/conf-available/10-accesslog.conf /etc/lighttpd/conf-enabled/' `
 
 
 Modify configuration:  
@@ -163,7 +163,7 @@ All requests from the CIC are proxied before they reach a server. We will set up
 
 `sudo apt install squid apache2-utils -y`  
 `sudo su -c 'touch /etc/squid/passwords && chmod 777 /etc/squid/passwords && htpasswd -c /etc/squid/passwords b2v_standard'`  
-`sudo mv /etc/squid/squid.conf /etc/squid/squid.conf.original && sudo vi /etc/squid/squid.conf`  
+`sudo su -c 'mv /etc/squid/squid.conf /etc/squid/squid.conf.original && vi /etc/squid/squid.conf'`  
 
 
 ```
@@ -171,18 +171,30 @@ auth_param basic program /usr/lib/squid/basic_ncsa_auth /etc/squid/passwords
 auth_param basic realm Squid proxy-caching web server
 auth_param basic credentialsttl 24 hours
 acl authenticated proxy_auth REQUIRED
+acl Safe_ports port 80
+http_access deny !to_localhost
+http_access deny !Safe_ports
 http_access allow authenticated
 http_access deny all
+reply_header_access X-Cache-Lookup deny all
+reply_header_access X-Cache deny all
 dns_v4_first on
 forwarded_for delete
 via off
 http_port 8080
 cache deny all
+
+logformat timereadable %tl %6tr %>a %Ss/%03Hs %<st %rm %ru %un %Sh/%<A %mt
+access_log daemon:/var/log/squid/access.log timereadable
 ```
 
 
+Restart squid:  
+`sudo systemctl restart squid`
+
+
 If ufw is installed:  
-`sudo ufw allow 8080/tcp && sudo service squid restart`
+`sudo ufw allow 8080/tcp && `
 
 
 
@@ -280,6 +292,7 @@ Directory traversal is now accounted for.
 
 ## Notes/gotchas
 
+* Set Date/Time before provisioning.
 * If provisioning works successfully via tethering but BMW Online/Live does not (gets stuck on 'Starting'), run Tool32 job STEUERN_RESET_TO_BASIC_STATE with argument 0x00000000, STEUERGERAETE_RESET, and re-pair the phone.
 * The proxy defined in the provisioning XML must be an IPv4 instead of a domain name. Domain names cannot be resolved at this stage.
 * The server address can be defined as both a domain name or IPv4. Setting to an IP should save on a DNS query.
@@ -314,7 +327,7 @@ OR
 
 Phones tested:
 
-- LEX720 with Lineage 15 - basicaly unusable, with Lineage 18 - unreliable
+- LEX720 with Lineage 18.1, working
 - iPhone 4S - working
 - Galaxy A5 (2017) - working
 
@@ -329,5 +342,5 @@ Provisioning XML parameters:
 ```
 
 - bon - BWM ONLINE
-- csdtimeout - N/A, set to 0.
+- csdtimeout - Circuit Switched Data - precursor to GPRS. N/A, set to 0.
 - gprstimeout - time in seconds after a GPRS connection is finished that it will stay awake for the next request. Higher values improve experience but drain phone battery.
