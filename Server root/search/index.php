@@ -1,5 +1,5 @@
 <?php
-require_once('vendor/autoload.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/a/php/vendor/autoload.php');
 
 $show_results = FALSE;
 $results_html = "";
@@ -54,18 +54,19 @@ function clean_str($str) {
     return $str;
 }
 
-ob_start("ob_gzhandler");
+include_once($_SERVER['DOCUMENT_ROOT'] . '/a/php/minify.php');
+ob_start("minifier");
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 2.0//EN">
 <html>
 <head>
 <title>CIC Portal > FrogFind!</title>
-<?php if (isset($_COOKIE['development'])) echo '<link href="/assets/css/default_bon.css" type="text/css" rel="stylesheet">'; ?>
+<?php if (isset($_COOKIE['development'])) echo '<link href="/a/css/default_bon.css" type="text/css" rel="stylesheet">'; ?>
 </head>
 <body>
 
 <?php if($show_results) { // there's a search query in q, so show search results ?>
-<link href="/assets/css/override-cic-search.css" type="text/css" rel="stylesheet">
+<link href="/a/css/override-cic-search.css" type="text/css" rel="stylesheet">
 <hr>
 <center>Search Results for <b><?php echo strip_tags(urldecode($query)) ?></b></center>
 <?php echo $final_result_html ?>

@@ -1,6 +1,6 @@
 <?php
 
-require_once('php/autoloader.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/a/php/autoloader.php');
 
 $section="";
 $loc = "US";
@@ -65,14 +65,16 @@ function clean_str($str) {
 
     return $str;
 }
-ob_start("ob_gzhandler");
+
+include_once($_SERVER['DOCUMENT_ROOT'] . '/a/php/minify.php');
+ob_start("minifier");
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 2.0//EN">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <html>
 <head>
 <title>CIC Portal > 68k.news</title>
-<?php if (isset($_COOKIE['development'])) echo '<link href="/assets/css/default_bon.css" type="text/css" rel="stylesheet">'; ?>
+<?php if (isset($_COOKIE['development'])) echo '<link href="/a/css/default_bon.css" type="text/css" rel="stylesheet">'; ?>
 </head>
 <body>
 	<center><h1><b>68k.news:</b> <font color="#9400d3"><i>Headlines from the Future</i></font></h1></center>

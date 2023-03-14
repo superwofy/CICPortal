@@ -1,5 +1,5 @@
 <?php
-require_once('vendor/autoload.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/a/php/vendor/autoload.php');
 
 $article_url = "";
 $article_html = "";
@@ -57,8 +57,10 @@ function clean_str($str) {
     $str = str_replace( "–", '-', $str );
 
     return $str;
-ob_start("ob_gzhandler");
 }
+
+include_once($_SERVER['DOCUMENT_ROOT'] . '/a/php/minify.php');
+ob_start("minifier");
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 2.0//EN">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
