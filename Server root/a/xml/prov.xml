@@ -34,7 +34,7 @@
 </access>
 <portal>
 <http>
-<proxy>*your IP*</proxy>
+<proxy>your-ip</proxy>
 <port>8080</port>
 <proxyuser>b2v_standard</proxyuser>
 <proxypwd>b2v_standard</proxypwd>

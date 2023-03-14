@@ -12,17 +12,16 @@ if ($lat === "0" && $long === "0") {
 	$weather_data = file_get_contents("http://127.0.0.1/weather/get-weather.php?lat={$lat}&long={$long}&VIN={$VIN}");
 }
 
-header("Content-type: application/xhtml+xml");
-ob_start("ob_gzhandler");
+include_once($_SERVER['DOCUMENT_ROOT'] . '/a/php/minify.php');
+ob_start("minifier");
 ?>
 <?php if ($weather_data == "unavailable") : ?>
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html>
 <head>
 <title>CIC Portal >> Weather Unavailable</title>
-<?php if (isset($_COOKIE['development'])) echo '<link href="/assets/css/default_bon.css" type="text/css" rel="stylesheet"/>'; ?>
+<?php if (isset($_COOKIE['development'])) echo '<link href="/a/css/default_bon.css" type="text/css" rel="stylesheet">'; ?>
 </head>
 <body>
 <p style="text-align:center;margin-top:150px">Weather data unavailable for this location!</p>
@@ -30,13 +29,12 @@ ob_start("ob_gzhandler");
 </html>
 
 <?php elseif ($weather_data == "error") : ?>
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html>
 <head>
 <title>CIC Portal >> Weather Error</title>
-<?php if (isset($_COOKIE['development'])) echo '<link href="/assets/css/default_bon.css" type="text/css" rel="stylesheet"/>'; ?>
+<?php if (isset($_COOKIE['development'])) echo '<link href="/a/css/default_bon.css" type="text/css" rel="stylesheet">'; ?>
 </head>
 <body>
 <p style="text-align:center;margin-top:150px">Failed to retrieve weather data!</p>
@@ -45,14 +43,13 @@ ob_start("ob_gzhandler");
 
 <?php else : ?>
 <?php $weather_data = json_decode($weather_data); ?>
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html>
 <head>
 <title>CIC Portal > Weather</title>
-<?php if (isset($_COOKIE['development'])) echo '<link href="/assets/css/default_bon.css" type="text/css" rel="stylesheet"/>'; ?>
-<link href="/assets/css/weather.css" type="text/css" rel="stylesheet"/>
+<?php if (isset($_COOKIE['development'])) echo '<link href="/a/css/default_bon.css" type="text/css" rel="stylesheet">'; ?>
+<link href="/a/css/weather.css" type="text/css" rel="stylesheet">
 </head>
 <body>
 <h1><?php echo $weather_data->forecast_header_value; ?></h1>
@@ -70,10 +67,10 @@ ob_start("ob_gzhandler");
 <td class="temp nobr"><?php echo $weather_data->today_overnight_temperature; ?></td>
 </tr>
 <tr>
-<td><img src="/assets/img/weather-col/<?php echo str_replace(' ', '-', $weather_data->today_morning_condition); ?>.png" alt=""/></td>
-<td><img src="/assets/img/weather-col/<?php echo str_replace(' ', '-', $weather_data->today_afternoon_condition); ?>.png"  alt=""/></td>
-<td><img src="/assets/img/weather-col/<?php echo str_replace(' ', '-', $weather_data->today_evening_condition); ?>.png"  alt=""/></td>
-<td class="nobr"><img src="/assets/img/weather-col/<?php echo str_replace(" ", '-', $weather_data->today_overnight_condition); ?>.png" alt=""/></td>
+<td><img src="/a/img/weather-col/<?php echo str_replace(' ', '-', $weather_data->today_morning_condition); ?>.png"></td>
+<td><img src="/a/img/weather-col/<?php echo str_replace(' ', '-', $weather_data->today_afternoon_condition); ?>.png" ></td>
+<td><img src="/a/img/weather-col/<?php echo str_replace(' ', '-', $weather_data->today_evening_condition); ?>.png" ></td>
+<td class="nobr"><img src="/a/img/weather-col/<?php echo str_replace(" ", '-', $weather_data->today_overnight_condition); ?>.png"></td>
 </tr>
 <tr>
 <td><?php echo $weather_data->today_morning_condition; ?></td>
@@ -103,10 +100,10 @@ ob_start("ob_gzhandler");
 <td class="temp nobr"><?php echo $weather_data->three_hours_temperature; ?></td>
 </tr>
 <tr>
-<td><img src="/assets/img/weather-col/<?php echo str_replace(' ', '-', $weather_data->now_condition); ?>.png" alt=""/></td>
-<td><img src="/assets/img/weather-col/<?php echo str_replace(' ', '-', $weather_data->one_hour_condition); ?>.png" alt=""/></td>
-<td><img src="/assets/img/weather-col/<?php echo str_replace(' ', '-', $weather_data->two_hours_condition); ?>.png" alt=""/></td>
-<td class="nobr"><img src="/assets/img/weather-col/<?php echo str_replace(' ', '-', $weather_data->three_hours_condition); ?>.png" alt=""/></td>
+<td><img src="/a/img/weather-col/<?php echo str_replace(' ', '-', $weather_data->now_condition); ?>.png"></td>
+<td><img src="/a/img/weather-col/<?php echo str_replace(' ', '-', $weather_data->one_hour_condition); ?>.png"></td>
+<td><img src="/a/img/weather-col/<?php echo str_replace(' ', '-', $weather_data->two_hours_condition); ?>.png"></td>
+<td class="nobr"><img src="/a/img/weather-col/<?php echo str_replace(' ', '-', $weather_data->three_hours_condition); ?>.png"></td>
 </tr>
 <tr>
 <td><?php echo $weather_data->now_condition; ?></td>

@@ -21,24 +21,23 @@ else $settings = file_get_contents($_SERVER["DOCUMENT_ROOT"].'/settings/vehicle/
 
 $settings = json_decode($settings);
 $u_tz = $settings->timezone;
-header("Content-type: application/xhtml+xml");
-ob_start("ob_gzhandler");
+include_once($_SERVER['DOCUMENT_ROOT'] . '/a/php/minify.php');
+ob_start("minifier");
 ?>
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html>
 <head>
 <title>CIC Portal >> World Clock</title>
-<link href="/assets/css/clock.css" type="text/css" rel="stylesheet"/>
+<link href="/a/css/clock.css" type="text/css" rel="stylesheet">
 </head>
 <body>
 <p id="debug"></p>
 <p class="top-p">These values depend on the car time and portal timezone being set.</p>
 <p id="u_tz" style="display:none"><?php echo $u_tz; ?></p>
 <div class="container">
-<table id="clkTbl" class="timeZone"><tr style="display:none"><td/></tr></table>
+<table id="clkTbl" class="timeZone"><tr style="display:none"><td></td></tr></table>
 </div>
-<script type="text/javascript" src="/assets/js/clock.js"></script>
+<script type="text/javascript" src="/a/js/clock.js"></script>
 </body>
 </html>

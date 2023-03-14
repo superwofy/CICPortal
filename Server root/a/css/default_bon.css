@@ -4,7 +4,7 @@
 
 @font-face {
     font-family: "BMWTypeRegular";
-    src: url(/assets/font/Frutiger.ttf) format("truetype");
+    src: url(/a/font/Frutiger.ttf) format("truetype");
 }
 
 body { margin-top: 0px; margin-bottom: 0px; background-color: #202020; font-family: BMWTypeRegular; font-size: 36px; line-height: 60px; color: #80B0DC; }

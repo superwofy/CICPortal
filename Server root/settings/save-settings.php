@@ -33,16 +33,15 @@ if (!empty($_POST)) {
 	}
 }
 
-header("Content-type: application/xhtml+xml");
-ob_start("ob_gzhandler");
+include_once($_SERVER['DOCUMENT_ROOT'] . '/a/php/minify.php');
+ob_start("minifier");
 ?>
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html>
 <head>
 <title>CIC Portal >>> Settings saved</title>
-<?php if (isset($_COOKIE['development'])) echo '<link href="/assets/css/default_bon.css" type="text/css" rel="stylesheet"/>'; ?>
+<?php if (isset($_COOKIE['development'])) echo '<link href="/a/css/default_bon.css" type="text/css" rel="stylesheet">'; ?>
 </head>
 <body>
 <p style="text-align:center;margin-top:150px"><?php echo $message; ?></p>

@@ -1,15 +1,14 @@
 <?php
-header("Content-type: application/xhtml+xml");
-ob_start("ob_gzhandler");
+include_once($_SERVER['DOCUMENT_ROOT'] . '/a/php/minify.php');
+ob_start("minifier");
 ?>
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html>
 <head>
 <title>CIC Portal >> Timer</title>
-<?php if (isset($_COOKIE['development'])) echo '<link href="/assets/css/default_bon.css" type="text/css" rel="stylesheet"/>'; ?>
-<link href="/assets/css/timer.css" type="text/css" rel="stylesheet"/>
+<?php if (isset($_COOKIE['development'])) echo '<link href="/a/css/default_bon.css" type="text/css" rel="stylesheet">'; ?>
+<link href="/a/css/timer.css" type="text/css" rel="stylesheet">
 </head>
 <body>
 <div class="column">
@@ -22,8 +21,8 @@ ob_start("ob_gzhandler");
 <button type="button" onclick="t_clear();" name="reset">Clear All</button>
 </div>
 <div class="column">
-<table id="laps"><tr style="display:none"><td/></tr></table>
+<table id="laps"><tr style="display:none"><td></td></tr></table>
 </div>
-<script type="text/javascript" src="/assets/js/timer.js"></script>
+<script type="text/javascript" src="/a/js/timer.js"></script>
 </body>
 </html> 

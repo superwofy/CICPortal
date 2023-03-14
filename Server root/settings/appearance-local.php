@@ -25,23 +25,22 @@ $images = array("Black and White" => "0", "Blue Transparent" => "1", "Vintage Lo
 $countries = array("UK" => "UK", "USA" => "US", "Ireland" => "IE", "Germany" => "DE", "France" => "FR");
 $timezones = array("+8" => "8", "+7" => "7", "+6" => "6", "+5" => "5", "+4" => "4", "+3" => "3", "+2" => "2", "+1" => "1", "0" => "0", "-1" => "-1", "-2" => "-2", "-3" => "-3", "-4" => "-4", "-5" => "-5", "-6" => "-6", "-7" => "-7", "-8" => "-8");
 
-header("Content-type: application/xhtml+xml");
-ob_start("ob_gzhandler");
+include_once($_SERVER['DOCUMENT_ROOT'] . '/a/php/minify.php');
+ob_start("minifier");
 ?>
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html>
 <head>
 <title>CIC Portal >> Appearance</title>
-<?php if (isset($_COOKIE['development'])) echo '<link href="/assets/css/default_bon.css" type="text/css" rel="stylesheet"/>'; ?>
-<link href="/assets/css/appearance.css" type="text/css" rel="stylesheet"/>
+<?php if (isset($_COOKIE['development'])) echo '<link href="/a/css/default_bon.css" type="text/css" rel="stylesheet">'; ?>
+<link href="/a/css/appearance.css" type="text/css" rel="stylesheet">
 </head>
 <body>
 
 <form action="./save-settings.php" method="post">
 <p><label for="welcomemsg">Welcome Message</label></p>
-<div><input type="text" id="welcomemsg" name="welcomemsg" value="<?php echo $welcomemsg; ?>"/></div>
+<div><input type="text" id="welcomemsg" name="welcomemsg" value="<?php echo $welcomemsg; ?>"></div>
 <p><label>Welcome Message Color</label></p>
 <div>
 <select name="welcomemsg-color" id="welcomemsg-color">
@@ -117,7 +116,7 @@ foreach ($timezones as $key => $value){
 ?>
 </select>
 </div>
-<div><input type="submit" value=" Save Settings "/></div>
+<div><input type="submit" value=" Save Settings "></div>
 </form>
 </body>
 </html> 

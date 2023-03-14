@@ -63,15 +63,19 @@ For cloud, a small Lightsail instance is $3.50/month.
 You will need an http web-server (Apache, Lighttpd, NGINX, etc.) and PHP.
 
 
-The instructions below apply for a Debian 11 instance and PHP7.4.
+The instructions below apply for a Debian 11 instance with Lighttpd and PHP8.2.
+
+Add source:
+
+`echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" | sudo tee /etc/apt/sources.list.d/sury-php.list && curl -fsSL  https://packages.sury.org/php/apt.gpg | sudo gpg --dearmor -o /etc/apt/trusted.gpg.d/sury-keyring.gpg`
 
 
 Install packages:  
-`sudo su -c 'apt update && apt upgrade -y && apt install lighttpd php-fpm php-xml php-curl php-gd php-mbstring -y'`
+`sudo su -c 'apt update && apt upgrade -y && apt install lighttpd lighttpd-mod-deflate php-fpm php-xml php-curl php-gd php-mbstring -y'`
 
 
 Configure server:  
-`ln -s /var/www/html/ web-root && sudo su -c 'chown admin:admin /var/www/ -R && echo "cgi.fix_pathinfo=1" >> /etc/php/7.4/fpm/php.ini && ln -s /etc/lighttpd/conf-available/10-fastcgi.conf /etc/lighttpd/conf-enabled/ && ln -s /etc/lighttpd/conf-available/15-fastcgi-php.conf /etc/lighttpd/conf-enabled/ && ln -s /etc/lighttpd/conf-available/10-accesslog.conf /etc/lighttpd/conf-enabled/' `
+`ln -s /var/www/html/ web-root && sudo su -c 'chown admin:admin /var/www/ -R && echo -e "cgi.fix_pathinfo=1\nzlib.output_compression = On\nzlib.output_compression_level = 9\n" >> /etc/php/8.2/fpm/php.ini && ln -s /etc/lighttpd/conf-available/10-fastcgi.conf /etc/lighttpd/conf-enabled/ && ln -s /etc/lighttpd/conf-available/15-fastcgi-php.conf /etc/lighttpd/conf-enabled/ && ln -s /etc/lighttpd/conf-available/10-accesslog.conf /etc/lighttpd/conf-enabled/' `
 
 
 Modify configuration:  
@@ -80,7 +84,7 @@ Modify configuration:
 ```
 fastcgi.server += ( ".php" => 
 	((
-		"socket" => "/run/php/php7.4-fpm.sock",
+		"socket" => "/run/php/php8.2-fpm.sock",
 		"broken-scriptfilename" => "enable"
 	))
 )
@@ -135,7 +139,8 @@ url.access-deny             = ( "~", ".inc" )
 static-file.exclude-extensions = ( ".php", ".pl", ".fcgi" )
 
 deflate.cache-dir           = "/var/cache/lighttpd/compress/"
-deflate.mimetypes           = ( "application/javascript", "text/css", "text/html", "text/plain", "font/ttf", "application/xhtml+xml", "application/xml" )
+deflate.mimetypes           = ( "application/javascript", "text/css", "text/html", "text/plain", "font/ttf", "application/xml" )
+deflate.allowed-encodings   = ( "gzip", "deflate" )
 
 # default listening port for IPv6 falls back to the IPv4 port
 include_shell "/usr/share/lighttpd/use-ipv6.pl " + server.port
@@ -146,7 +151,7 @@ include "/etc/lighttpd/conf-enabled/*.conf"
 
 
 Re-start the web server:  
-`sudo systemctl restart lighttpd.service`
+`sudo systemctl restart lighttpd.service; sudo systemctl restart php*`
 
 
 Copy the portal files to the web root (/var/www/html/) and change permissions for settings files, cache folder for frogfind,news:  
@@ -322,7 +327,7 @@ Testing with a computer:
 - Go to about:config and set network.proxy.allow_hijacking_localhost to true
 - Visit http://127.0.0.1/bonstartpage.php?development and refresh the page
 OR
-- Open port 80 and connect directly to the webserver (should be restricted to your IP)
+- Open port 80 and connect directly to the webserver bypassing Squid (should be restricted to your IP)
 
 
 Phones tested:
