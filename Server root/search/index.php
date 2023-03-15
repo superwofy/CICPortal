@@ -61,12 +61,12 @@ ob_start("minifier");
 <html>
 <head>
 <title>CIC Portal > FrogFind!</title>
-<?php if (isset($_COOKIE['development'])) echo '<link href="/a/css/default_bon.css" type="text/css" rel="stylesheet">'; ?>
+<?php if (isset($_COOKIE['development'])) echo '<link href="/a/css/default_bon.css" rel="stylesheet">'; ?>
 </head>
 <body>
 
 <?php if($show_results) { // there's a search query in q, so show search results ?>
-<link href="/a/css/override-cic-search.css" type="text/css" rel="stylesheet">
+<link href="/a/css/override-cic-search.css" rel="stylesheet">
 <hr>
 <center>Search Results for <b><?php echo strip_tags(urldecode($query)) ?></b></center>
 <?php echo $final_result_html ?>

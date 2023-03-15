@@ -7,8 +7,8 @@ ob_start("minifier");
 <html>
 <head>
 <title>CIC Portal >> Timer</title>
-<?php if (isset($_COOKIE['development'])) echo '<link href="/a/css/default_bon.css" type="text/css" rel="stylesheet">'; ?>
-<link href="/a/css/timer.css" type="text/css" rel="stylesheet">
+<?php if (isset($_COOKIE['development'])) echo '<link href="/a/css/default_bon.css" rel="stylesheet">'; ?>
+<link href="/a/css/timer.css" rel="stylesheet">
 </head>
 <body>
 <div class="column">
@@ -23,6 +23,6 @@ ob_start("minifier");
 <div class="column">
 <table id="laps"><tr style="display:none"><td></td></tr></table>
 </div>
-<script type="text/javascript" src="/a/js/timer.js"></script>
+<script src="/a/js/timer.js"></script>
 </body>
 </html> 

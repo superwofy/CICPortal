@@ -23,19 +23,6 @@ A world clock
 Whatever else you wish to add :)
 
 
-# Server VM
-
-https://mega.nz/file/vWohwaYD#P4wy5eISmEGCdT10b6FT_22ruv8qL8WNToAgDkd2LWA  
-Use this VM to skip configuring the webserver and proxy.  
-This is not kept up-to-date. You may have to update the portal files manually.  
-The static IP may need to be reconfigured depending on your network setup.  
-`sudo vi /etc/systemd/network/25-wired.network`  
-Port 8080 must be opened and forwarded on your router.  
-
-Edit /var/www/html/provision.xml and replace \*\*your IP\*\* with your static IP.
-
-
-
 # Manual Installation
 
 
@@ -173,7 +160,7 @@ All requests from the CIC are proxied before they reach a server. We will set up
 
 ```
 auth_param basic program /usr/lib/squid/basic_ncsa_auth /etc/squid/passwords
-auth_param basic realm Squid proxy-caching web server
+auth_param basic realm Squid
 auth_param basic credentialsttl 24 hours
 acl authenticated proxy_auth REQUIRED
 acl Safe_ports port 80
@@ -206,7 +193,7 @@ If ufw is installed:
 ## Combox
 
 
-The Combox uses essentially the same hardware as the CIC sans the Fujitsu Carmine gpu and half the RAM. If you read the HARMAN manual you will note that pins 8 (TX), 9 (RX) and 16 (GND) are UART to the SH4 chip.
+The Combox uses essentially the same hardware as the CIC sans the Fujitsu Carmine GPU and half the RAM. If you read the HARMAN manual you will note that pins 8 (TX), 9 (RX) and 16 (GND) are UART to the SH4 chip.
 
 Hook up a simple UART (57600) adapter to those pins and you will see debug output that is printed by a custom binary (TestMenu). However, in order to do anything fun like say, execute commands we will need to login to this binary with root access. 
 
@@ -304,7 +291,6 @@ Directory traversal is now accounted for.
 * Setting addresses such as BON and provisioning to 127.0.0.1 speeds up access since Squid won't have to make a DNS query.
 * Static assets such as PNGs are cached for the current session. Set cache headers to persist cache.
 * Gzip compression is supported.
-* PSIM (Prefit SIM), CSIM (Customer SIM)
 * The Ghidra module for SH4 is quite good.
 
 
@@ -330,6 +316,12 @@ OR
 - Open port 80 and connect directly to the webserver bypassing Squid (should be restricted to your IP)
 
 
+Monitoring traffic:
+
+- External to Squid:  `sudo tcpdump -i eth0 -s 65535 -w squid.pcap port 8080 --print`
+- Internal to server: `sudo tcpdump -i lo -s 65535 -w http.pcap port 80 --print`
+
+
 Phones tested:
 
 - LEX720 with Lineage 18.1, working
@@ -349,3 +341,4 @@ Provisioning XML parameters:
 - bon - BWM ONLINE
 - csdtimeout - Circuit Switched Data - precursor to GPRS. N/A, set to 0.
 - gprstimeout - time in seconds after a GPRS connection is finished that it will stay awake for the next request. Higher values improve experience but drain phone battery.
+- PSIM (Prefit SIM), CSIM (Customer SIM)

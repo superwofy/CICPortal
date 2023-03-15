@@ -29,7 +29,7 @@ ob_start("minifier");
 <html>
 <head>
 <title>CIC Portal >> World Clock</title>
-<link href="/a/css/clock.css" type="text/css" rel="stylesheet">
+<link href="/a/css/clock.css" rel="stylesheet">
 </head>
 <body>
 <p id="debug"></p>
@@ -38,6 +38,6 @@ ob_start("minifier");
 <div class="container">
 <table id="clkTbl" class="timeZone"><tr style="display:none"><td></td></tr></table>
 </div>
-<script type="text/javascript" src="/a/js/clock.js"></script>
+<script src="/a/js/clock.js"></script>
 </body>
 </html>

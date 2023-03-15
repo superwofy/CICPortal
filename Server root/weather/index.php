@@ -21,7 +21,7 @@ ob_start("minifier");
 <html>
 <head>
 <title>CIC Portal >> Weather Unavailable</title>
-<?php if (isset($_COOKIE['development'])) echo '<link href="/a/css/default_bon.css" type="text/css" rel="stylesheet">'; ?>
+<?php if (isset($_COOKIE['development'])) echo '<link href="/a/css/default_bon.css" rel="stylesheet">'; ?>
 </head>
 <body>
 <p style="text-align:center;margin-top:150px">Weather data unavailable for this location!</p>
@@ -34,7 +34,7 @@ ob_start("minifier");
 <html>
 <head>
 <title>CIC Portal >> Weather Error</title>
-<?php if (isset($_COOKIE['development'])) echo '<link href="/a/css/default_bon.css" type="text/css" rel="stylesheet">'; ?>
+<?php if (isset($_COOKIE['development'])) echo '<link href="/a/css/default_bon.css" rel="stylesheet">'; ?>
 </head>
 <body>
 <p style="text-align:center;margin-top:150px">Failed to retrieve weather data!</p>
@@ -48,8 +48,8 @@ ob_start("minifier");
 <html>
 <head>
 <title>CIC Portal > Weather</title>
-<?php if (isset($_COOKIE['development'])) echo '<link href="/a/css/default_bon.css" type="text/css" rel="stylesheet">'; ?>
-<link href="/a/css/weather.css" type="text/css" rel="stylesheet">
+<?php if (isset($_COOKIE['development'])) echo '<link href="/a/css/default_bon.css" rel="stylesheet">'; ?>
+<link href="/a/css/weather.css" rel="stylesheet">
 </head>
 <body>
 <h1><?php echo $weather_data->forecast_header_value; ?></h1>

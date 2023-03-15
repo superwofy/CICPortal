@@ -10,7 +10,7 @@ ob_start("minifier");
 "http://www.w3.org/TR/html4/strict.dtd">
 <html>
 <title>CIC Portal >> Info</title>
-<?php if (isset($_COOKIE['development'])) echo '<link href="/a/css/default_bon.css" type="text/css" rel="stylesheet">'; ?>
+<?php if (isset($_COOKIE['development'])) echo '<link href="/a/css/default_bon.css" rel="stylesheet">'; ?>
 </head>
 <body>
 <?php 
@@ -22,7 +22,7 @@ echo "<h1>Protocol: {$_SERVER['SERVER_PROTOCOL']} {$_SERVER['HTTP_ACCEPT_ENCODIN
 echo "<h1>Portal updated: ".date("F d Y H:i:s", filemtime("../bonstartpage.php"))."</h1>";
 ?>
 <h1 id="screen-size"></h1>
-<script type="text/javascript" src="/a/js/screen.js"></script>
+<script src="/a/js/screen.js"></script>
 </body>
 </html> 
 

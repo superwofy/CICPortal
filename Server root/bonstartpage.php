@@ -22,7 +22,14 @@ $timezone = $settings->timezone;
 $now = new DateTime();
 if (isset($_GET['development'])) {setcookie("development", 1);}
 
-$weather_data = file_get_contents("http://127.0.0.1/weather/get-weather.php?lat={$_GET['lat']}&long={$_GET['long']}&VIN={$VIN}");
+$weather_data = "error";
+$weather_link = "/weather/index.php?lat=0&amp;long=0";
+$settings_link = "/settings/index.php";
+if (isset($_GET['lat']) && isset($_GET['long'])) {
+  $weather_data = file_get_contents("http://127.0.0.1/weather/get-weather.php?lat={$_GET['lat']}&long={$_GET['long']}&VIN={$VIN}");
+  $weather_link = "/weather/index.php?lat={$_GET['lat']}&amp;long={$_GET['long']}";
+  $settings_link = "/settings/index.php?lat={$_GET['lat']}&amp;long={$_GET['long']}";
+} 
 
 include_once($_SERVER['DOCUMENT_ROOT'] . '/a/php/minify.php');
 ob_start("minifier");
@@ -32,17 +39,17 @@ ob_start("minifier");
 <html>
 <head>
 <title>CIC Portal Home</title>
-<?php if (isset($_COOKIE['development'])) echo '<link href="/a/css/default_bon.css" type="text/css" rel="stylesheet">'; ?>
-<link href="/a/css/index.css" type="text/css" rel="stylesheet">
+<?php if (isset($_COOKIE['development'])) echo '<link href="/a/css/default_bon.css" rel="stylesheet">'; ?>
+<link href="/a/css/index.css" rel="stylesheet">
 </head>
 <body style="margin-top:10px">
 <div>
 <div class="column" style="margin-top:10px">
-<a href="<?php echo "/weather/index.php?lat={$_GET['lat']}&amp;long={$_GET['long']}"; ?>"><img src="/a/img/clouds.png" height="32px">Weather</a>
+<a href="<?php echo $weather_link; ?>"><img src="/a/img/clouds.png" height="32px">Weather</a>
 <a href="/news/index.php"><img src="/a/img/news.png" height="32px">News</a>
 <a href="/search/index.php"><img src="/a/img/search.png" height="32px">Search</a>
 <a href="/extras/index.php"><img src="/a/img/window.png" height="32px">Extras</a>
-<a href="<?php echo "/settings/index.php?lat={$_GET['lat']}&amp;long={$_GET['long']}"; ?>"><img src="/a/img/set.png" height="32px">Settings</a>
+<a href="<?php echo $settings_link; ?>"><img src="/a/img/set.png" height="32px">Settings</a>
 </div>
 <div class="column column2">
 <p style="color:<?php echo $date_color . '">' . $now->format('d-m-Y'); ?></p>

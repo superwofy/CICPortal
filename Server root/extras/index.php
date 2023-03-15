@@ -7,8 +7,8 @@ ob_start("minifier");
 <html>
 <head>
 <title>CIC Portal > Extras</title>
-<?php if (isset($_COOKIE['development'])) echo '<link href="/a/css/default_bon.css" type="text/css" rel="stylesheet">'; ?>
-<link href="/a/css/index.css" type="text/css" rel="stylesheet">
+<?php if (isset($_COOKIE['development'])) echo '<link href="/a/css/default_bon.css" rel="stylesheet">'; ?>
+<link href="/a/css/index.css" rel="stylesheet">
 </head>
 <body style="margin-top:80px">
 <div>

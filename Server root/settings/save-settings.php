@@ -41,7 +41,7 @@ ob_start("minifier");
 <html>
 <head>
 <title>CIC Portal >>> Settings saved</title>
-<?php if (isset($_COOKIE['development'])) echo '<link href="/a/css/default_bon.css" type="text/css" rel="stylesheet">'; ?>
+<?php if (isset($_COOKIE['development'])) echo '<link href="/a/css/default_bon.css" rel="stylesheet">'; ?>
 </head>
 <body>
 <p style="text-align:center;margin-top:150px"><?php echo $message; ?></p>

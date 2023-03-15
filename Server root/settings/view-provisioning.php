@@ -12,7 +12,7 @@ ob_start("minifier");
 <html>
 <head>
 <title>CIC Portal >> Provisioning</title>
-<?php if (isset($_COOKIE['development'])) echo '<link href="/a/css/default_bon.css" type="text/css" rel="stylesheet">'; ?>
+<?php if (isset($_COOKIE['development'])) echo '<link href="/a/css/default_bon.css" rel="stylesheet">'; ?>
 </head>
 <body>
 <?php echo '<pre style="font-size:20px;line-height:25px;margin-left:15px">'.htmlspecialchars($XML).'</pre>'; ?>

@@ -8,8 +8,8 @@ ob_start("minifier");
 <html>
 <head>
 <title>CIC Portal > Settings</title>
-<?php if (isset($_COOKIE['development'])) echo '<link href="/a/css/default_bon.css" type="text/css" rel="stylesheet">'; ?>
-<link href="/a/css/index.css" type="text/css" rel="stylesheet">
+<?php if (isset($_COOKIE['development'])) echo '<link href="/a/css/default_bon.css" rel="stylesheet">'; ?>
+<link href="/a/css/index.css" rel="stylesheet">
 </head>
 <body style="margin-top:50px">
 <div>
@@ -21,6 +21,6 @@ ob_start("minifier");
 </div>
 <div class="column column2"><img class="setting-icon" src="/a/img/settings-5-256.png"></div>
 </div> 
-<script type="text/javascript" src="/a/js/reset.js"></script>
+<script src="/a/js/reset.js"></script>
 </body>
 </html> 

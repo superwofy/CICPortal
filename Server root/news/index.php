@@ -45,7 +45,7 @@ $feed->set_feed_url($feed_url);
 
 
 // Set cache location
-$feed->set_cache_location('php/library/cache');
+$feed->set_cache_location($_SERVER['DOCUMENT_ROOT'] . '/php/library/cache');
 
  
 // Run SimplePie.
