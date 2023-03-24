@@ -1,6 +1,6 @@
 <?php
 $ch = curl_init();
-curl_setopt($ch, CURLOPT_URL, "http://127.0.0.1/provision.php");
+curl_setopt($ch, CURLOPT_URL, "http://127.0.0.1/provision.php?portal=true");
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
 $XML = curl_exec($ch);
 

@@ -14,12 +14,12 @@
 				<bearer>0E</bearer>
 			</cm>
 			<csd>
-				<isdn>+498945227788</isdn>
-				<mode>90</mode>
-				<rasuser>car@bmwonline.de</rasuser>
-				<raspwd>1673hjdk</raspwd>
-				<csdtimeout>300</csdtimeout>
-				<reduced/>
+			  <isdn/>
+			  <mode/>
+			  <rasuser/>
+			  <raspwd/>
+			  <csdtimeout/>
+			  <reduced/>
 			</csd>
 			<gprs>
 				<apn/>
@@ -106,7 +106,7 @@
 			<aclappl>
 				<appname>prov</appname>
 				<appcode>2</appcode>
-				<minbearer>02</minbearer>
+				<minbearer>0E</minbearer>
 				<maxbearer>0E</maxbearer>
 				<voicechannel>0</voicechannel>
 				<datachannel>2</datachannel>
@@ -133,7 +133,7 @@
 			<aclappl>
 				<appname>prov</appname>
 				<appcode>2</appcode>
-				<minbearer>02</minbearer>
+				<minbearer>0E</minbearer>
 				<maxbearer>0E</maxbearer>
 				<voicechannel>0</voicechannel>
 				<datachannel>2</datachannel>

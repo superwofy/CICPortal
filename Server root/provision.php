@@ -13,7 +13,11 @@ if (file_exists($basefile)) {
 	$to_sub = new DateInterval('PT6H');						// Make sure OTAs are at least 6h before server time.
 	$ota_time->sub($to_sub);
 	$bmwprov->id = $ota_time->format( 'Ymd-His' );			// Server time!
-	echo str_replace("\n", '', $bmwprov->asXML());			// Strip line breaks
+	if (!isset($_GET['portal'])){
+		echo str_replace("\n", '', $bmwprov->asXML());		// Strip line breaks
+	} else {
+		echo $bmwprov->asXML();
+	}
 }
 
 ?>

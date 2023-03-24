@@ -1,7 +1,7 @@
 # What is this?
 
 
-A home-brew implementation of BMW's Online portal for CIC High (8.8") infotainment units.
+A home-brew implementation of BMW's Online portal for CIC High (8.8") infotainment units. It works through Bluetooth tethering.
 
 If your telematics subscription is still active you can still access the original BMW servers. The public proxy that was accessible through Bluetooth tethering was shut down around 2018.
 
@@ -279,13 +279,15 @@ To load manually with Tool32:
 ## Security
 
 Some provisions were made to allow multiple cars to use a single server. However, access control and strict VIN validation are required for a 'production' solution.
-Directory traversal is now accounted for.
+If you're going to deploy, additional checks need to be added.
 
 
 ## Notes/gotchas
 
 * Set Date/Time before provisioning.
-* If provisioning works successfully via tethering but BMW Online/Live does not (gets stuck on 'Starting'), run Tool32 job STEUERN_RESET_TO_BASIC_STATE with argument 0x00000000, STEUERGERAETE_RESET, and re-pair the phone.
+* If provisioning works successfully via tethering but BMW Online/Live does not (gets stuck on 'Starting'):
+  **Try disabling Audio first**. I find on most devices having both 'Audio' and 'Data Transfer' enabled tends to create loops.
+  Reset everything. Run Tool32 job STEUERN_RESET_TO_BASIC_STATE with argument 0x00000000, STEUERGERAETE_RESET on CMEDIAR. Then STEUERGERAETE_RESET the CICR and re-pair the phone. Might take a couple of tries.
 * The proxy defined in the provisioning XML must be an IPv4 instead of a domain name. Domain names cannot be resolved at this stage.
 * The server address can be defined as both a domain name or IPv4. Setting to an IP should save on a DNS query.
 * Setting addresses such as BON and provisioning to 127.0.0.1 speeds up access since Squid won't have to make a DNS query.
@@ -324,9 +326,9 @@ Monitoring traffic:
 
 Phones tested:
 
-- LEX720 with Lineage 18.1, working
-- iPhone 4S - working
-- Galaxy A5 (2017) - working
+- iPhone 4S (iOS 5.0.1) - working
+- Galaxy A5 2017 (8.0.0) - working
+- LEX720 (Lineage 18.1) - working
 
 
 Provisioning XML parameters:
