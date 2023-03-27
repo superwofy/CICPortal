@@ -17,12 +17,12 @@ if (!empty($_POST)) {
 		$settings->country = isset($_POST['country-setting']) ? $_POST['country-setting'] : "UK";
 		$settings->timezone = isset($_POST['timezone']) ? $_POST['timezone'] : "0";
 
-		$filename = getcwd().'/vehicle/'.$VIN.'.json';
+		$filename = $_SERVER['DOCUMENT_ROOT'] . '/cache/settings/'.$VIN.'.json';
 		if (!preg_match('/[A-Z|0-9]{7}/', $VIN)) {                                                                 	//attempt to prevent directory traversal with $VIN
 		    exit();
 		}
 		
-		$fp = fopen(getcwd().'/vehicle/'.$VIN.'.json', 'w');
+		$fp = fopen($filename, 'w');
 		if ($fp) {
 			$written = fwrite($fp, json_encode($settings));
 			if ($written) {

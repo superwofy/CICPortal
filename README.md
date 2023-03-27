@@ -143,7 +143,7 @@ Re-start the web server:
 
 Copy the portal files to the web root (/var/www/html/) and change permissions for settings files, cache folder for frogfind,news:  
 
-`sudo su -c 'chown www-data:www-data /var/www/html/settings/vehicle -R; chown www-data:www-data /var/www/html/search/php/library/cache -R; chown www-data:www-data /var/www/html/news/php/library/cache -R; chown www-data:www-data /var/www/html/weather/cache'`
+`sudo su -c 'chown www-data:www-data /var/www/html/settings/vehicle -R; chown www-data:www-data /var/www/html/cache -R'`
 
 
 
@@ -286,12 +286,13 @@ If you're going to deploy, additional checks need to be added.
 
 * Set Date/Time before provisioning.
 * If provisioning works successfully via tethering but BMW Online/Live does not (gets stuck on 'Starting'):
-  **Try disabling Audio first**. I find on most devices having both 'Audio' and 'Data Transfer' enabled tends to create loops.
+  **Try disabling Audio first**. I find on most devices having both 'Audio' and 'Data Transfer' enabled tends to create loops. Set AVRCP profile to 1.3 (adopted in 2007)?
   Reset everything. Run Tool32 job STEUERN_RESET_TO_BASIC_STATE with argument 0x00000000, STEUERGERAETE_RESET on CMEDIAR. Then STEUERGERAETE_RESET the CICR and re-pair the phone. Might take a couple of tries.
+  ![Audio](Images/audio-off.jpg "Audio")
 * The proxy defined in the provisioning XML must be an IPv4 instead of a domain name. Domain names cannot be resolved at this stage.
 * The server address can be defined as both a domain name or IPv4. Setting to an IP should save on a DNS query.
 * Setting addresses such as BON and provisioning to 127.0.0.1 speeds up access since Squid won't have to make a DNS query.
-* Static assets such as PNGs are cached for the current session. Set cache headers to persist cache.
+* Static assets such as PNGs are cached (only, and when not Reloading) for the current session. Set cache headers to persist cache.
 * Gzip compression is supported.
 * The Ghidra module for SH4 is quite good.
 

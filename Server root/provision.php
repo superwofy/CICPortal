@@ -6,7 +6,7 @@
 // setcookie("JSESSIONID", "", time()-3600);
 header('Content-Type: application/xml');
 
-$basefile = $_SERVER['DOCUMENT_ROOT'] . '/a/xml/prov.xml';
+$basefile = $_SERVER['DOCUMENT_ROOT'] . '/assets/xml/prov.xml';
 if (file_exists($basefile)) {
 	$bmwprov = simplexml_load_file($basefile);
 	$ota_time = new DateTime();
