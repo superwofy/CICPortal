@@ -14,9 +14,11 @@ $weather_data = "error";
 $weather_link = "/weather.php?lat=0&amp;long=0";
 $settings_link = "/settings.php";
 if (isset($_GET['lat']) && isset($_GET['long'])) {
-  $weather_data = file_get_contents("http://127.0.0.1/assets/php/get-weather.php?lat={$_GET['lat']}&long={$_GET['long']}&VIN={$VIN}");
-  $weather_link = "/weather.php?lat={$_GET['lat']}&amp;long={$_GET['long']}";
-  $settings_link = "/settings.php?lat={$_GET['lat']}&amp;long={$_GET['long']}";
+  if (is_numeric($_GET['lat']) && is_numeric($_GET['long'])) {
+    $weather_data = file_get_contents("http://127.0.0.1/assets/php/get-weather.php?lat={$_GET['lat']}&long={$_GET['long']}&VIN={$VIN}");
+    $weather_link = "/weather.php?lat={$_GET['lat']}&amp;long={$_GET['long']}";
+    $settings_link = "/settings.php?lat={$_GET['lat']}&amp;long={$_GET['long']}";
+  }
 } 
 
 include_once($_SERVER['DOCUMENT_ROOT'] . '/assets/php/minify.php');

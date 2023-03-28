@@ -19,7 +19,7 @@ ob_start("minifier");
 <a href="<?php echo "/info.php?lat={$_GET['lat']}&amp;long={$_GET['long']}"; ?>"><img src="/assets/img/info-2.png" alt="">Portal Info</a>
 <a href="" onclick="clear_cookies();"><img src="/assets/img/refresh-2.png" alt="">Reset</a>
 </div>
-<div class="col col2"><img class="setting-icon" src="/assets/img/settings-5-256.png" alt=""></div>
+<div class="col col2"><img style="margin-top:25px" src="/assets/img/settings-5-256.png" alt=""></div>
 </div> 
 <script type="text/javascript">function clear_cookies(){document.cookie.split(";").forEach(function(e){document.cookie=e.replace(/^ +/,"").replace(/=.*/,"=;expires="+(new Date).toUTCString()+";path=/")}),location.reload()}</script>
 </body>

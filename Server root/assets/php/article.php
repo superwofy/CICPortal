@@ -68,23 +68,23 @@ ob_start("minifier");
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>CIC Portal - Article Reader</title>
-<style>p{color:white}h1{margin-bottom:20px}</style>
+<style>p{color:white}h1{margin-bottom:20px}img{max-width:420px}</style>
+<script type="text/javascript">function hi(id){document.getElementById('im'+id).style.display='none';}</script>
+<?php if (isset($_COOKIE['development'])) echo '<link href="/assets/css/default_bon.css" rel="stylesheet">'; ?>
 </head>
 <body>
 <h1><?php echo clean_str($readability->getTitle());?></h1>
 <p><small><?php
+    $imgline_html = "";
     $img_num = 0;
-    $imgline_html = "Article images:";
     foreach ($readability->getImages() as $image_url):
-        //we can only do png and jpg
-        if (strpos($image_url, ".jpg") || strpos($image_url, ".jpeg") || strpos($image_url, ".png") === true) {
+        $url = strtolower($image_url);
+        if (str_ends_with($url, ".jpg") || str_ends_with($url, ".jpeg") || str_ends_with($url, ".png") || str_ends_with($url, ".gif")) {
+            $imgline_html .= "<a id='im" . $img_num . "' class='img' href='/assets/php/image.php?i=" . $url . "'><img onerror='hi(" . $img_num . ")' class='noborder' src='/assets/php/image_comp.php?i=" . $url . "'></img></a>";
             $img_num++;
-            $imgline_html .= " <a href='/assets/php/image.php?i=" . $image_url . "'>[$img_num]</a> ";
         }
     endforeach;
-    if($img_num>0) {
-        echo  $imgline_html ;
-    }
+    echo  $imgline_html;
 ?></small></p>
 <?php if($error_text) { echo '<p style="color:red">' . $error_text . "</p>"; } ?>
 <div><?php echo $readable_article;?></div>

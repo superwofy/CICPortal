@@ -85,12 +85,7 @@ Main lighttpd configuration:
 server.modules = (
   "mod_expire",
   "mod_setenv",
-  "mod_indexfile",
-  "mod_access",
-  "mod_alias",
-  "mod_redirect",
   "mod_deflate",
-  "mod_dirlisting",
   "mod_staticfile",
 )
 
@@ -104,7 +99,8 @@ server.pid-file             = "/var/run/lighttpd.pid"
 server.username             = "www-data"
 server.groupname            = "www-data"
 server.port                 = 80
-server.tag = 		    ""
+server.tag =                ""
+server.max-keep-alive-idle  = 60
 
 # strict parsing and normalization of URL for consistency and security
 # https://redmine.lighttpd.net/projects/lighttpd/wiki/Server_http-parseoptsDetails
@@ -121,12 +117,10 @@ server.http-parseopts = (
   "url-path-dotseg-remove"  => "enable",# recommended highly (unless breaks app)
 )
 
-index-file.names            = ( "index.php", "index.html" )
-url.access-deny             = ( "~", ".inc" )
-static-file.exclude-extensions = ( ".php", ".pl", ".fcgi" )
+static-file.exclude-extensions = ( ".php", ".fcgi" )
 
 deflate.cache-dir           = "/var/cache/lighttpd/compress/"
-deflate.mimetypes           = ( "application/javascript", "text/css", "text/html", "text/plain", "font/ttf", "application/xml" )
+deflate.mimetypes           = ( "application/javascript", "text/css", "text/html", "application/xml" )
 deflate.allowed-encodings   = ( "gzip", "deflate" )
 
 # default listening port for IPv6 falls back to the IPv4 port
@@ -138,7 +132,7 @@ include "/etc/lighttpd/conf-enabled/*.conf"
 
 
 Re-start the web server:  
-`sudo systemctl restart lighttpd.service; sudo systemctl restart php*`
+`sudo su -c 'systemctl restart lighttpd.service; systemctl restart php*'`
 
 
 Copy the portal files to the web root (/var/www/html/) and change permissions for settings files, cache folder for frogfind,news:  
@@ -152,30 +146,43 @@ Copy the portal files to the web root (/var/www/html/) and change permissions fo
 
 All requests from the CIC are proxied before they reach a server. We will set up a http proxy with basic auth. An added benefit of the proxy is that you don't need to keep port 80 open to the world.
 
+Install squid from apt with:
+`sudo apt install squid apache2-utils -y`
 
-`sudo apt install squid apache2-utils -y`  
-`sudo su -c 'touch /etc/squid/passwords && chmod 777 /etc/squid/passwords && htpasswd -c /etc/squid/passwords b2v_standard'`  
+
+Create password and config file:
+`sudo su -c 'touch /etc/squid/passwords && htpasswd -c /etc/squid/passwords b2v_standard'`  
 `sudo su -c 'mv /etc/squid/squid.conf /etc/squid/squid.conf.original && vi /etc/squid/squid.conf'`  
 
 
 ```
-auth_param basic program /usr/lib/squid/basic_ncsa_auth /etc/squid/passwords
+auth_param basic program /usr/lib/squid/basic_ncsa_auth /etc/squid/passwords                  # Basic auth as used by the CIC
 auth_param basic realm Squid
-auth_param basic credentialsttl 24 hours
-acl authenticated proxy_auth REQUIRED
-acl Safe_ports port 80
-http_access deny !to_localhost
+auth_param basic credentialsttl 24 hours                                                      # Keep client authenticated for x hours
+acl authenticated proxy_auth REQUIRED                                                         # Require basic auth
+acl Safe_ports port 80                                                                        # Restrict to the webserver's port
+http_access deny !to_localhost                                                                # Restrict to localhost
 http_access deny !Safe_ports
 http_access allow authenticated
-http_access deny all
-reply_header_access X-Cache-Lookup deny all
+http_access deny all                                                                          # Deny all other requests
+reply_header_access X-Cache-Lookup deny all                                                   # Unnecessary headers
 reply_header_access X-Cache deny all
 dns_v4_first on
 forwarded_for delete
 via off
-http_port 8080
-cache deny all
+http_port 8080                                                                                # Squid port set in provisioning xml
 
+# Only cache static resources
+acl filecachetype urlpath_regex	.*\.(png|jpg|jpeg|js|css)
+
+request_header_access Cache-Control deny all                                                  # Ignore request for fresh assets
+cache deny !filecachetype
+cache_mem 128 MB                                                                              # 128mb RAM cache
+
+refresh_pattern \.(css|js)                     600        50%     43200 ignore-reload         # cache js and css for shorter periods
+refresh_pattern \.(png|jpg|jpeg)               86400     100%     86400 ignore-reload         # forcefully cache images for two months as they don't change
+
+# Log requests
 logformat timereadable %tl %6tr %>a %Ss/%03Hs %<st %rm %ru %un %Sh/%<A %mt
 access_log daemon:/var/log/squid/access.log timereadable
 ```
@@ -186,7 +193,27 @@ Restart squid:
 
 
 If ufw is installed:  
-`sudo ufw allow 8080/tcp && `
+`sudo ufw allow 8080/tcp`
+
+
+
+
+OR:
+Building from Debian source (newer, but takes a while...):
+
+Download:
+`export SQUID_VER="5.7" && export SQUID_PKG="${SQUID_VER}-1"`
+`sudo apt build-dep squid -y && sudo apt install squid-langpack apache2-utils libtdb-dev -y`
+`wget http://http.debian.net/debian/pool/main/s/squid/squid_${SQUID_PKG}.dsc \
+wget http://http.debian.net/debian/pool/main/s/squid/squid_${SQUID_VER}.orig.tar.xz \
+wget http://http.debian.net/debian/pool/main/s/squid/squid_${SQUID_VER}.orig.tar.xz.asc \
+wget http://http.debian.net/debian/pool/main/s/squid/squid_${SQUID_PKG}.debian.tar.xz`
+
+Build:
+`dpkg-source -x squid_${SQUID_PKG}.dsc && cd squid-${SQUID_VER} && dpkg-buildpackage -rfakeroot -b -us -uc`
+
+Install:
+`cd .. && sudo dpkg -i squid-common_${SQUID_PKG}_all.deb && sudo dpkg -i squid_${SQUID_PKG}_amd64.deb`
 
 
 
@@ -325,6 +352,14 @@ Monitoring traffic:
 - Internal to server: `sudo tcpdump -i lo -s 65535 -w http.pcap port 80 --print`
 
 
+Slideshow convert photos:
+
+- `mogrify -resize 950x382^ -gravity Center -extent 950x409 -quality 65 *.jpg`
+- `ls -v | cat -n | while read n f; do mv -n "$f" "$n.jpg"; done`
+
+Slideshow photos extracted from Linux Mint Background packages and NASA/ESA Hubble. I do not own/have not created them. Author credits and licenses included in /assets/img/credits-slideshow.
+
+
 Phones tested:
 
 - iPhone 4S (iOS 5.0.1) - working
@@ -337,7 +372,7 @@ Provisioning XML parameters:
 ```
 <bon>
 <csdtimeout>0</csdtimeout>
-<gprstimeout>120</gprstimeout>
+<gprstimeout>600</gprstimeout>
 </bon>
 ```
 

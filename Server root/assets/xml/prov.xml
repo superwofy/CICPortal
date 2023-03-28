@@ -21,7 +21,7 @@
 <apnpwd/>
 <qos/>
 <pdptype/>
-<gprstimeout>300</gprstimeout>
+<gprstimeout>600</gprstimeout>
 </gprs>
 </access>
 <portal>
@@ -33,7 +33,7 @@
 </http>
 <dumm>
 <csdtimeout>0</csdtimeout>
-<gprstimeout>300</gprstimeout>
+<gprstimeout>600</gprstimeout>
 <proxycfgurl/>
 </dumm>
 <prov>
@@ -44,7 +44,7 @@
 <disable>00</disable>
 <vmax>FF</vmax>
 <csdtimeout>0</csdtimeout>
-<gprstimeout>300</gprstimeout>
+<gprstimeout>600</gprstimeout>
 </bon>
 </portal>
 </as>

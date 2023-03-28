@@ -68,6 +68,7 @@ ob_start("minifier");
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title><?php echo $readability->getTitle();?></title>
+<?php if (isset($_COOKIE['development'])) echo '<link href="/assets/css/default_bon.css" rel="stylesheet">'; ?>
 </head>
 <body>
 <hr>

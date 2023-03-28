@@ -15,6 +15,7 @@ if (!empty($_POST)) {
 		$settings->date_color = isset($_POST['date-color']) ? $_POST['date-color'] : "#80B0DC";
 		$settings->logo_setting = isset($_POST['logo-setting']) ? $_POST['logo-setting'] : "1";
 		$settings->country = isset($_POST['country-setting']) ? $_POST['country-setting'] : "UK";
+		$settings->language = isset($_POST['language-setting']) ? $_POST['language-setting'] : "en";
 		$settings->timezone = isset($_POST['timezone']) ? $_POST['timezone'] : "0";
 
 		$filename = $_SERVER['DOCUMENT_ROOT'] . '/cache/settings/'.$VIN.'.json';

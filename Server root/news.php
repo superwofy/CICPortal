@@ -3,23 +3,19 @@
 require_once($_SERVER['DOCUMENT_ROOT'] . '/assets/php/autoloader.php');
 
 $section="";
-$loc = "US";
-$lang = "en";
-$feed_url="";
-
 if(isset( $_GET['section'])) {
-    $section = $_GET["section"];
-}
-if(isset( $_GET['loc'])) {
-    $loc = strtoupper($_GET["loc"]);
-}
-if(isset( $_GET['lang'])) {
-    $lang = $_GET["lang"];
+	if (in_array($_GET['section'], array("top", "world", "nation", "business", "technology", "entertainment", "sports", "science", "health"))) {
+		$section = $_GET["section"];
+	} else {
+		$section="";
+	}
 }
 
 include_once($_SERVER['DOCUMENT_ROOT'] . '/assets/php/loadsettings.php');
 $loc = $settings->country;
+$lang = $settings->language;
 
+$feed_url="";
 if($section) {
 	$feed_url="https://news.google.com/news/rss/headlines/section/topic/".strtoupper($section)."?ned=".$loc."&hl=".$lang;
 } else {
@@ -62,34 +58,34 @@ ob_start("minifier");
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">#k68<?php if($section){echo ',.'.$section;}?>{color:#9400d3}</style>
+
 <title>CIC Portal > 68k.news</title>
 <?php if (isset($_COOKIE['development'])) echo '<link href="/assets/css/default_bon.css" type="text/css" rel="stylesheet">'; ?>
 </head>
 <body>
-	<center><h1><b>68k.news:</b> <font color="#9400d3"><i>Headlines from the Future</i></font> <?php echo strtoupper($loc) ?> Edition</h1></center>
-	<?php
-	if($section) {
-		$section_title = explode(" - ", strtoupper($feed->get_title()));
-		echo "<center><h2>" . $section_title[0]  . " NEWS</h2></center>";
-	}
-	?>
+	<center><h1><b>68k.news:</b><span id="k68"><i> Headlines from the Future </i></span><?php echo strtoupper($loc) ?></h1></center>
 	<small>
 	<p>
-	<center><a href="/news.php?loc=<?php echo $loc ?>">TOP</a> <a href="/news.php?section=world&loc=<?php echo strtoupper($loc) ?>">WORLD</a> <a href="/news.php?section=nation&loc=<?php echo strtoupper($loc) ?>">NATION</a> <a href="/news.php?section=business&loc=<?php echo strtoupper($loc) ?>">BUSINESS</a> <a href="/news.php?section=technology&loc=<?php echo strtoupper($loc) ?>">TECHNOLOGY</a> <a href="/news.php?section=entertainment&loc=<?php echo strtoupper($loc) ?>">ENTERTAINMENT</a> <a href="/news.php?section=sports&loc=<?php echo strtoupper($loc) ?>">SPORTS</a> <a href="/news.php?section=science&loc=<?php echo strtoupper($loc) ?>">SCIENCE</a> <a href="/news.php?section=health&loc=<?php echo strtoupper($loc) ?>">HEALTH</a><br>
+	<center><a href="/news.php">TOP</a> <a class="world" href="/news.php?section=world">WORLD</a> <a class="nation" href="/news.php?section=nation">NATION</a> <a class="business" href="/news.php?section=business">BUSINESS</a> <a class="technology" href="/news.php?section=technology">TECHNOLOGY</a> <a class="entertainment" href="/news.php?section=entertainment">ENTERTAINMENT</a> <a class="sports" href="/news.php?section=sports">SPORTS</a> <a class="science" href="/news.php?section=science">SCIENCE</a> <a class="health" href="/news.php?section=health">HEALTH</a><br>
 	<hr>
 	</center>
 	</p>
 	</small>
 	<?php
+	if($section) {
+		$section_title = explode(" - ", strtoupper($feed->get_title()));
+		echo "<center><h2>" . $section_title[0]  . "</h2></center>";
+	}
 	/*
 	Here, we'll loop through all of the items in the feed, and $item represents the current item in the loop.
 	*/
 	foreach ($feed->get_items() as $item):
 	?>
-			<p><font size="4"><?php 
+			<p><?php 
             $subheadlines = clean_str($item->get_description());
             $remove_google_link = explode("<li><strong>", $subheadlines);
-            $no_blank = str_replace('target="_blank"', "", $remove_google_link[0]) . "</li></ol></font></p>"; 
+            $no_blank = str_replace('target="_blank"', "", $remove_google_link[0]) . "</li></ol></p>"; 
             $cleaned_links = str_replace('<a href="', '<a href="/assets/php/article.php?a=', $no_blank);
 			$cleaned_links = strip_tags($cleaned_links, '<a><ol><ul><li><br><p><small><font><b><strong><i><em><blockquote><h1><h2><h3><h4><h5><h6>');
     		$cleaned_links = str_replace( 'strong>', 'b>', $cleaned_links); //change <strong> to <b>

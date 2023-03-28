@@ -8,19 +8,6 @@ if (isset( $_GET['i'] ) ) {
     exit();
 }
 
-//we can only do jpg and png here
-if (strpos($url, ".jpg") && strpos($url, ".jpeg") && strpos($url, ".png") != true ) {
-    echo strpos($url, ".jpg");
-    echo "Unsupported file type.";
-    exit();
-}
-
-//image needs to start with http
-if (substr( $url, 0, 4 ) != "http") {
-    echo("Image failed.");
-    exit();
-}
-
 include_once($_SERVER['DOCUMENT_ROOT'] . '/assets/php/minify.php');    
 ob_start("minifier");
 ?>
@@ -28,6 +15,7 @@ ob_start("minifier");
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<?php if (isset($_COOKIE['development'])) echo '<link href="/assets/css/default_bon.css" rel="stylesheet">'; ?>
 <title>CIC Portal - Web Image Viewer</title>
 </head>
 <body>

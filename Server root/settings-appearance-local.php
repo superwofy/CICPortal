@@ -8,10 +8,12 @@ $date_color = $settings->date_color;
 $logo_setting = $settings->logo_setting;
 $timezone = $settings->timezone;
 $country = $settings->country;
+$language = $settings->language;
 
 $colors = array("Default Color" => "#80B0DC", "White" => "white", "Red" => "red", "Green" => "green", "Orange" => "orange", "Pink" => "pink");
 $images = array("Black and White" => "0", "Blue Transparent" => "1", "Vintage Logo (slower)" => "2", "///M Logo" => "3");
-$countries = array("UK" => "UK", "USA" => "US", "Ireland" => "IE", "Germany" => "DE", "France" => "FR");
+$countries = array("UK" => "UK", "USA" => "US", "Ireland" => "IE", "Deutschland" => "DE", "España" => "ES", "România" => "RO");
+$languages = array("English" => "en", "Deutsch" => "de", "Français" => "fr", "Español" => "es", "Română" => "ro");
 $timezones = array("+8" => "8", "+7" => "7", "+6" => "6", "+5" => "5", "+4" => "4", "+3" => "3", "+2" => "2", "+1" => "1", "0" => "0", "-1" => "-1", "-2" => "-2", "-3" => "-3", "-4" => "-4", "-5" => "-5", "-6" => "-6", "-7" => "-7", "-8" => "-8");
 
 include_once($_SERVER['DOCUMENT_ROOT'] . '/assets/php/minify.php');
@@ -80,6 +82,21 @@ foreach ($images as $key => $value){
 <?php
 foreach ($countries as $key => $value){
     if ($value == $country){
+        $selected = 'selected="selected"'; 
+    } else {
+        $selected = "";
+    }    
+    echo "<option {$selected} value=\"{$value}\">{$key}</option>";
+}
+?>
+</select>
+</div>
+<p><label>News Language</label></p>
+<div>
+<select name="language-setting">
+<?php
+foreach ($languages as $key => $value){
+    if ($value == $language){
         $selected = 'selected="selected"'; 
     } else {
         $selected = "";

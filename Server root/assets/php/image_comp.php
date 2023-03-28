@@ -6,23 +6,26 @@ $raw_image = NULL;
 
 //get the image url
 if (isset( $_GET['i'] ) ) {
-    $url = $_GET[ 'i' ];
+    $url = strtolower($_GET['i']);
 } else {
     exit();
 }
 
 //an image will start with http, anything else is sus
-if (substr( $url, 0, 4 ) != "http") {
+if (!str_starts_with($url, "http")) {
     exit();
 }
 
 //we can only do jpg and png here
-if (strpos($url, ".jpg") || strpos($url, ".jpeg") === true) {
+if (str_ends_with($url, ".jpg") || str_ends_with($url, ".jpeg")) {
     $filetype = "jpg";
     $raw_image = imagecreatefromjpeg($url);
-} elseif (strpos($url, ".png") === true) {
+} elseif (str_ends_with($url, ".png")) {
     $filetype = "png";
     $raw_image = imagecreatefrompng($url);
+} elseif (str_ends_with($url, ".gif")) {
+    $filetype = "gif";
+    $raw_image = imagecreatefromgif($url);
 } else {
     exit();
 }
@@ -43,10 +46,12 @@ $dest_image = imagecreatetruecolor($dest_imagex, $dest_imagey);
 imagecopyresampled($dest_image, $raw_image, 0, 0, 0, 0, $dest_imagex, $dest_imagey, $raw_imagex, $raw_imagey);
 
 header('Content-type: image/' . $filetype); 
-if ($filetype = "jpg") {
-    imagejpeg($dest_image,NULL,80); //80% quality
-} elseif ($filetype = "png") {
-    imagepng($dest_image,NULL,9); //90% compression
+if ($filetype == "jpg") {
+    imagejpeg($dest_image,NULL,65);                                         // 65% quality
+} elseif ($filetype == "png") {
+    imagepng($dest_image,NULL,9);                                           // level 9 compression
+} elseif ($filetype == "gif") {
+    imagegif($dest_image,NULL);
 }
 
 ?>
