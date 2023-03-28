@@ -23,10 +23,9 @@ ob_start("minifier");
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>CIC Portal >> Appearance</title>
 <?php if (isset($_COOKIE['development'])) echo '<link href="/assets/css/default_bon.css" rel="stylesheet">'; ?>
-<link href="/assets/css/appearance.css" rel="stylesheet">
+<style type="text/css">body{font-size:32px;text-align:center;line-height:50px}p{margin:20px 0 20px 0}input[type=text]{padding-left:20px}select{padding-left:20px;width:43%}input[type=submit]{margin:20px 0 20px 0}</style>
 </head>
 <body>
-
 <form action="./save-settings.php" method="post">
 <p><label for="welcomemsg">Welcome Message</label></p>
 <div><input type="text" id="welcomemsg" name="welcomemsg" value="<?php echo $welcomemsg; ?>"></div>

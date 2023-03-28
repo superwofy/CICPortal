@@ -29,30 +29,32 @@ ob_start("minifier");
 <title>CIC Portal Home</title>
 <?php if (isset($_COOKIE['development'])) echo '<link href="/assets/css/default_bon.css" rel="stylesheet">'; ?>
 <link href="/assets/css/index.css" rel="stylesheet">
+<style type="text/css">body{margin-top:10px}.col{margin-top:10px}#date{color:<?php echo $date_color; ?>}#img_wid{margin:5px 0 0 0}#w_wid{margin-top:-10px}#w_p{font-size:32px;display:inline-block;color:<?php echo $message_color; ?>}#w_img{display:inline-block;margin:0 0 14px 10px;height:32px}</style>
 </head>
-<body style="margin-top:10px">
+<body>
 <div>
-<div class="column" style="margin-top:10px">
+<div class="col">
 <a href="<?php echo $weather_link; ?>"><img src="/assets/img/clouds.png" alt="">Weather</a>
 <a href="/news.php"><img src="/assets/img/news.png" alt="">News</a>
 <a href="/search.php"><img src="/assets/img/search.png" alt="">Search</a>
 <a href="/extras.php"><img src="/assets/img/window.png" alt="">Extras</a>
 <a href="<?php echo $settings_link; ?>"><img src="/assets/img/set.png" alt="">Settings</a>
 </div>
-<div class="column column2">
-<?php echo '<p style="color:' . $date_color . '">' . $now->format('d-m-Y') . '</p>'; ?>
-<img style="margin:5px 0 0 0" src="/assets/img/widget/<?php echo $logo_setting; ?>.png" alt="">
+<div class="col col2">
+<?php echo '<p>' . $now->format('d-m-Y') . '</p>'; ?>
+<img id="img_wid" src="/assets/img/widget/<?php echo $logo_setting; ?>.png" alt="">
 <?php if (!empty($welcomemsg)) echo "<h1 style=\"color:{$message_color};margin-top:-5px\">{$welcomemsg}</h1>"; ?>
 </div>
 <?php
 if ($weather_data != "unavailable" && $weather_data != "error") {
   $weather_data = json_decode($weather_data);
-  echo '<div style="margin-top:-10px" class="column column2">';
-  echo '<p style="font-size:32px;display:inline-block;color:' . $message_color . '">' . $weather_data->now_temperature . ' ' . $weather_data->now_condition . '</p>';
-  echo '<img style="display:inline-block;margin:0 0 14px 10px" height="32px" src="/assets/img/weather-64/' . str_replace(' ', '-', $weather_data->now_condition) . '.png" alt="">';
+  echo '<div id="w_wid" class="col col2">';
+  echo '<p id="w_p">' . $weather_data->now_temperature . ' ' . $weather_data->now_condition . '</p>';
+  echo '<img id="w_img" src="/assets/img/weather-64/' . str_replace(' ', '-', $weather_data->now_condition) . '.png" alt="">';
   echo '</div>';
 }
 ?>
-</div> 
+</div>
+<script type="text/javascript">setInterval(function(){location.reload()},120000);</script>
 </body>
 </html> 

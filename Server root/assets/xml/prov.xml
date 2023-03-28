@@ -44,7 +44,7 @@
 <disable>00</disable>
 <vmax>FF</vmax>
 <csdtimeout>0</csdtimeout>
-<gprstimeout>600</gprstimeout>
+<gprstimeout>300</gprstimeout>
 </bon>
 </portal>
 </as>

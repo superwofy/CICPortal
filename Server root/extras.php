@@ -12,11 +12,11 @@ ob_start("minifier");
 </head>
 <body style="margin-top:80px">
 <div>
-<div class="column">
+<div class="col">
 <a href="/timer.php"><img src="/assets/img/timer.png" alt="">Lap Timer</a>
 <a href="/world-clock.php"><img src="/assets/img/time-8.png" alt="">World Clock</a>
 </div>
-<div class="column column2"><img class="extras-icon" src="/assets/img/window-apps-256.png" alt=""></div>
+<div class="col col2"><img class="extras-icon" src="/assets/img/window-apps-256.png" alt=""></div>
 </div>
 </body>
 </html> 

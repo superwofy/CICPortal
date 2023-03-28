@@ -305,7 +305,7 @@ Browser engine specs [NetFront 3.4]:
 - DOM1, 2 and Dynamic HTML
 - GIF, animated GIF, BMP, PNG, JPEG and MNG
 - HTTP1.1
-- SSL2.0/3.0,TLS1.0
+- SSL2.0/3.0, TLS1.0
 - Cookies
 
 
@@ -341,7 +341,8 @@ Provisioning XML parameters:
 </bon>
 ```
 
-- bon - BWM ONLINE
+- dummuseragent, dummabortpausetimeout and dummusegzip are used during provisioning.
+- bon - BMW ONLINE
 - csdtimeout - Circuit Switched Data - precursor to GPRS. N/A, set to 0.
 - gprstimeout - time in seconds after a GPRS connection is finished that it will stay awake for the next request. Higher values improve experience but drain phone battery.
 - PSIM (Prefit SIM), CSIM (Customer SIM)
