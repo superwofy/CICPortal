@@ -278,16 +278,12 @@ CONTACT_NUMBERS_DEALER
 	nicht_aktiv
 CONTACT_NUMBERS_BCALL_0B
 	nicht_aktiv
-ONLINE_BROWSER_C0D
-	nur_bmw_online_aktiv
-ONLINE_BROWSER_LIVE
-	nicht_aktiv
 ```
 
 
 ## Provisioning
 
-The provisioning file contains markup that describes what Online services are available, where they can be reached and how they should be configured.
+The provisioning file contains markup that describes what Online/Live services are available, where they can be reached and how they should be configured.
 Replace \*your IP\* with the IP address of the proxy.
 
 To load manually with Tool32:
@@ -377,7 +373,7 @@ Provisioning XML parameters:
 ```
 
 - dummuseragent, dummabortpausetimeout and dummusegzip are used during provisioning.
-- bon - BMW ONLINE
+- bon - BMW ONLINE/Live
 - csdtimeout - Circuit Switched Data - precursor to GPRS. N/A, set to 0.
 - gprstimeout - time in seconds after a GPRS connection is finished that it will stay awake for the next request. Higher values improve experience but drain phone battery.
 - PSIM (Prefit SIM), CSIM (Customer SIM)
