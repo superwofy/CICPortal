@@ -48,7 +48,7 @@ function request_weather() {
 
     /* MISC VALUES */
 
-    $nodes = $finder->query("//*[starts-with(@class, 'SunriseSunset--dateValue--')]");
+    $nodes = $finder->query("//*[starts-with(@class, 'TwcSunChart--dateValue--')]");
     $sunrise_time = $nodes[0]->nodeValue;
     $sunset_time = $nodes[1]->nodeValue;
 
@@ -70,9 +70,9 @@ function request_weather() {
     /* TODAY FORECAST */
 
     $nodes = $finder->query("//*[contains(@data-testid, 'TodayWeatherModule')]");    //morning,afternoon,evening,overnight forecast panel
-    $forecast_header_value =  $nodes[0]->childNodes[0]->childNodes[0]->nodeValue;            //value of the H2
+    $forecast_header_value = $nodes[0]->childNodes[0]->childNodes[0]->nodeValue;            //value of the H2
 
-    $today_breakdown_list = $nodes[0]->childNodes[1]->childNodes[0];                  //ul WeatherTable
+    $today_breakdown_list = $nodes[0]->childNodes[1]->childNodes[0]->childNodes[0];                  //ul WeatherTable
 
 
     $today_morning_temperature = $today_breakdown_list->childNodes[0]->childNodes[0]->childNodes[1]->childNodes[0]->nodeValue;                                                                                //ul-li -> a -> div -> span
@@ -113,7 +113,7 @@ function request_weather() {
     $nodes = $finder->query("//*[contains(@data-testid, 'HourlyWeatherModule')]");    //hourly forecast panel
     
 
-    $hourly_breakdown_list = $nodes[0]->childNodes[1]->childNodes[0];                  //ul WeatherTable
+    $hourly_breakdown_list = $nodes[0]->childNodes[1]->childNodes[0]->childNodes[0];                  //ul WeatherTable
 
     $now_temperature = $hourly_breakdown_list->childNodes[0]->childNodes[0]->childNodes[1]->childNodes[0]->nodeValue;
     $now_condition = $hourly_breakdown_list->childNodes[0]->childNodes[0]->childNodes[2]->childNodes[0]->childNodes[0]->nodeValue;

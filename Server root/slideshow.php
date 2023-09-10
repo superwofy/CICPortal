@@ -14,7 +14,7 @@ ob_start("minifier");
 <body>
 <div><a href="javascript:void(0)" onclick="ss_u()"><img onload="ss_l()" onerror="ss()" id="im" class="noborder" alt=""></div></a>
 <script>
-function rng(){ma=624;return Math.floor(Math.random()*(ma-1)+1);}
+function rng(){ma=692;return Math.floor(Math.random()*(ma-1)+1);}
 function ss(){document.getElementById('im').src="/assets/img/slideshow/"+rng()+".jpg";}
 function ss_l(){ss_t=setTimeout(ss,30000);}function ss_u(){clearTimeout(ss_t);ss();}
 ss();

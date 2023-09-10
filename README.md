@@ -351,7 +351,7 @@ Monitoring traffic:
 Slideshow convert photos:
 
 - `mogrify -resize 950x382^ -gravity Center -extent 950x409 -quality 65 *.jpg`
-- `ls -v | cat -n | while read n f; do mv -n "$f" "$n.jpg"; done`
+- `n=1; for f in *.jpg; do mv "$f" "$((n++)).jpg"; done`
 
 Slideshow photos extracted from Linux Mint Background packages and NASA/ESA Hubble. I do not own/have not created them. Author credits and licenses included in /assets/img/credits-slideshow.
 
